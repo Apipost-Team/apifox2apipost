@@ -179,6 +179,7 @@ class Apifox2Apipost {
           });
         }
       }else{
+        request.body.mode = 'json';
         request.body.raw=foxApi.requestBody.sampleValue || '';
       }
     }
