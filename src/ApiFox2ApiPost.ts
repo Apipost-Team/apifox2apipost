@@ -60,25 +60,29 @@ class Apifox2Apipost {
       for (const key in foxApi.parameters) {
         let item = foxApi.parameters[key];
         if (key == 'query') {
-          item.name && request.query.push({
-            is_checked: "1",
-            type: 'Text',
-            key: item.name,
-            value: item.sampleValue || '',
-            not_null: "1",
-            description: item.description || '',
-            field_type: "Text"
-          });
+          for (const p of item) {
+            p.name && request.query.push({
+              is_checked: "1",
+              type: 'Text',
+              key: p.name,
+              value: p.sampleValue || '',
+              not_null: "1",
+              description: p.description || '',
+              field_type: "Text"
+            });
+          }
         } else if (key == 'header') {
-          item.name && request.header.push({
-            is_checked: "1",
-            type: 'Text',
-            key: item.name,
-            value: item.sampleValue || '',
-            not_null: "1",
-            description: item.description || '',
-            field_type: "Text"
-          });
+          for (const p of item) {
+            p.name && request.header.push({
+              is_checked: "1",
+              type: 'Text',
+              key: p.name,
+              value: p.sampleValue || '',
+              not_null: "1",
+              description: p.description || '',
+              field_type: "Text"
+            });
+          }
         }
       }
     }
