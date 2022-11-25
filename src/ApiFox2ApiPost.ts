@@ -65,7 +65,7 @@ class Apifox2Apipost {
               is_checked: "1",
               type: 'Text',
               key: p.name,
-              value: p.sampleValue || '',
+              value: p?.sampleValue || p?.example || '',
               not_null: "1",
               description: p.description || '',
               field_type: "Text"
@@ -77,7 +77,7 @@ class Apifox2Apipost {
               is_checked: "1",
               type: 'Text',
               key: p.name,
-              value: p.sampleValue || '',
+              value: p.sampleValue || p?.example || '',
               not_null: "1",
               description: p.description || '',
               field_type: "Text"
@@ -159,7 +159,7 @@ class Apifox2Apipost {
                 is_checked: "1",
                 type: 'Text',
                 key: param.name || "",
-                value: param.sampleValue || "",
+                value: param.sampleValue || param.example || "",
                 not_null: "1",
                 description: param.description || "",
                 field_type: "Text"
@@ -175,7 +175,7 @@ class Apifox2Apipost {
                 is_checked: "1",
                 type: param['type'] && param['type'] == 'file' ? 'File' : 'Text',
                 key: param.name || "",
-                value: param.sampleValue || "",
+                value: param.sampleValue || param.example || "",
                 not_null: "1",
                 description: param.description || "",
                 field_type: "Text"
