@@ -1,11 +1,27 @@
+const STATUS_NAME: any = {
+  released: '已发布',
+  testing: '测试中',
+  deprecated: '将废弃',
+  obsolete: '已废弃',
+  exception: '有异常',
+  tested: '已测完',
+  pending: '待确定',
+  integrating: '联调中',
+  designing: '设计中',
+}
+
 class Apifox2Apipost {
   version: string;
   project: any;
   apis: any[];
+  envs: any[];
+  dataModel: any[];
   constructor() {
     this.version = '1.0';
     this.project = {};
     this.apis = [];
+    this.envs = [];
+    this.dataModel = [];
   }
   ConvertResult(status: string, message: string, data: any = '') {
     return {
@@ -41,9 +57,113 @@ class Apifox2Apipost {
   handleInfo(json: any) {
     this.project.name = json?.info?.name || '新建项目';
     this.project.description = json?.info?.description || '';
+    this.project.markList = [];
+    this.project.script = {
+      pre_script: '',
+      test: '',
+    };
+    // 全局参数 
+    if (json.hasOwnProperty('commonParameters') && json.commonParameters.hasOwnProperty('parameters')) {
+      let parameters = json.commonParameters.parameters;
+      // header
+      if (parameters.hasOwnProperty('header') && parameters.header instanceof Array) {
+        this.project.header = [];
+        for (const h of parameters.header) {
+          this.project.header.push({
+            is_checked: h?.defaultEnable ? '1' : "-1",
+            type: 'Text',
+            key: h?.name || '',
+            value: h?.defaultValue || '',
+            not_null: h?.required ? '1' : "-1",
+            description: h?.description || '',
+            field_type: "Text"
+          })
+        }
+      }
+      // query
+      if (parameters.hasOwnProperty('query') && parameters.query instanceof Array) {
+        this.project.query = [];
+        for (const q of parameters.query) {
+          this.project.query.push({
+            is_checked: q?.defaultEnable ? '1' : "-1",
+            type: 'Text',
+            key: q?.name || '',
+            value: q?.defaultValue || '',
+            not_null: q?.required ? '1' : "-1",
+            description: q?.description || '',
+            field_type: "Text"
+          })
+        }
+      }
+      // body
+      if (parameters.hasOwnProperty('body') && parameters.body instanceof Array) {
+        this.project.body = [];
+        for (const b of parameters.body) {
+          this.project.body.push({
+            is_checked: b?.defaultEnable ? '1' : "-1",
+            type: 'Text',
+            key: b?.name || '',
+            value: b?.defaultValue || '',
+            not_null: b?.required ? '1' : "-1",
+            description: b?.description || '',
+            field_type: "Text"
+          })
+        }
+      }
+    }
+    // 全局变量 globalVars
+    if (json.hasOwnProperty('globalVariables') && json.globalVariables instanceof Array && json.globalVariables.length > 0) {
+      this.project.globalVars = {};
+      for (const globalVariable of json.globalVariables) {
+        if (globalVariable.hasOwnProperty('variables') && globalVariable.variables instanceof Array && globalVariable.variables.length > 0) {
+          for (const variable of globalVariable.variables) {
+            if (variable?.name) {
+              this.project.globalVars[String(variable.name)] = variable?.value || variable?.initialValue || '';
+            }
+          }
+        }
+      };
+    };
+    // 全局脚本
+    if (json.hasOwnProperty('commonScripts') && json.commonScripts instanceof Array && json.commonScripts.length > 0) {
+      // for (const commonScript of json.commonScripts) {
+
+      // }
+      this.project.commonScripts = json.commonScripts;
+    }
+  }
+  handleEnvs(json: any) {
+    if (json.hasOwnProperty('environments') && json.environments instanceof Array && json.environments.length > 0) {
+      let foxEnvs = json.environments;
+      for (const foxEnv of foxEnvs) {
+        let temp_env: any = {
+          name: foxEnv?.name || '未命名环境',
+          pre_url: foxEnv?.baseUrl || '',
+          list: {},
+        }
+        if (foxEnv.hasOwnProperty('variables') && foxEnv.variables instanceof Array && foxEnv.variables.length > 0) {
+          for (const variable of foxEnv.variables) {
+            if (variable.hasOwnProperty('name')) {
+              temp_env.list[String(variable.name)] = variable?.value || '';
+            }
+          }
+        }
+        this.envs.push(temp_env);
+      }
+    }
   }
   createNewApi(item: any) {
     const { api: foxApi } = item;
+    let status = foxApi?.status;
+
+    // 在对应模型上 并且未存入项目markList中
+    if (STATUS_NAME.hasOwnProperty(status) && this.project.markList.findIndex((item: any) => item?.key === status) === -1) {
+      this.project.markList.push({
+        key: status,
+        name: STATUS_NAME[status],
+      })
+    };
+
     var api: any = {
       name: item.name || '新建接口',
       target_type: 'api',
@@ -53,7 +173,12 @@ class Apifox2Apipost {
         'query': [],
         'header': [],
         'description': foxApi.description || '',
-      }
+        event: {
+          pre_script: '',
+          test: '',
+        }
+      },
+      mark: status || 'developing',
     }
     const { request } = api;
     if (foxApi.hasOwnProperty('parameters')) {
@@ -182,18 +307,56 @@ class Apifox2Apipost {
               })
           });
         }
-      }else{
+      } else {
         request.body.mode = 'json';
-        request.body.raw=foxApi.requestBody.sampleValue || foxApi.requestBody.example || '';
+        request.body.raw = foxApi.requestBody.sampleValue || foxApi.requestBody.example || '';
       }
     }
+    // 前置执行脚本
+    if (foxApi.hasOwnProperty('preProcessors') && foxApi.preProcessors instanceof Array) {
+      request.event.pre_script = this.handlePreProcessors(foxApi.preProcessors);
+    }
+    // 后执行脚本
+    if (foxApi.hasOwnProperty('postProcessors') && foxApi.postProcessors instanceof Array) {
+      request.event.test = this.handlePreProcessors(foxApi.postProcessors);
+    }
     return api;
+  }
+  handlePreProcessors(PreProcessors: any) {
+    if (PreProcessors instanceof Array && PreProcessors.length > 0) {
+      let script = '';
+      for (const preProcessor of PreProcessors) {
+        if (preProcessor?.type === 'customScript' && typeof preProcessor?.data === 'string' && preProcessor.data.trim().length > 0) {
+          // 自定义脚本
+          script = script + preProcessor.data.trim() + '\n';
+        } else if (preProcessor?.type === 'commonScript' && preProcessor?.data instanceof Array && preProcessor.data.length > 0) {
+          // 全局公共脚本
+          script = script + this.handleCommonScript(preProcessor.data[0]);
+        }
+      }
+      return script;
+    }
+  }
+  handleCommonScript(id: any) {
+    if (this.project?.commonScripts instanceof Array) {
+      let findItem = this.project.commonScripts.find((item: any) => item?.id === id)
+      if (findItem && findItem != undefined && typeof findItem?.content === 'string') {
+        return findItem?.content + '\n';
+      }
+    }
+    return '';
   }
   createNewFolder(item: any) {
     var newFolder: any = {
       'name': item.name || '新建目录',
       'target_type': 'folder',
       'description': item.description || '',
+      'request': {
+        srcipt: {
+          pre_script: '',
+          test: '',
+        }
+      },
       'children': [],
     };
     // 全证
@@ -251,6 +414,14 @@ class Apifox2Apipost {
       }
       newFolder['auth'] = apiPostAuth;
     }
+    // 目录预执行脚本
+    if (item.hasOwnProperty('preProcessors') && item.preProcessors instanceof Array && item.preProcessors.length > 0) {
+      newFolder.request.srcipt.pre_script = this.handlePreProcessors(item.preProcessors);
+    }
+    // 目录后执行脚本
+    if (item.hasOwnProperty('postProcessors') && item.postProcessors instanceof Array && item.postProcessors.length > 0) {
+      newFolder.request.srcipt.test = this.handlePreProcessors(item.postProcessors);
+    }
     return newFolder;
   }
   handleApiAndFolder(items: any[], parent: any = null) {
@@ -282,18 +453,87 @@ class Apifox2Apipost {
       }
     }
   }
+  createDataModelNewFolder(item: any) {
+    var newFolder: any = {
+      'model_id': item?.id || '',
+      'name': item?.name || '新建目录',
+      'model_type': 'folder',
+      'description': item?.description || '',
+      'children': [],
+    };
+    return newFolder;
+  }
+  createNewModelData(item: any) {
+    const { name, displayName, description, schema, id } = item;
+    var model: any = {
+      model_id: id || '',
+      name: name || '新建模型',
+      displayName: displayName || '新建模型',
+      model_type: 'model',
+      description: description || '',
+      schema: {},
+    }
+    try {
+      let jsonSchema = schema?.jsonSchema;
+      if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]' && jsonSchema.hasOwnProperty('type') && jsonSchema.hasOwnProperty('properties')) {
+        // x-apifox-orders 2 APIPOST_ORDERS x-apifox-refs 2 APIPOST_REFS  $ref 2 ref  x-apifox-overrides 2 APIPOST_OVERRIDES
+        let jsonSchemaStr = JSON.stringify(jsonSchema);
+        // 替换 x-apifox-orders 为 APIPOST_ORDERS
+        jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-orders\"/g, '\"APIPOST_ORDERS\"');
+        // 替换 x-apifox-refs 为 APIPOST_REFS
+        jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-refs\"/g, '\"APIPOST_REFS\"');
+        // 替换 $ref 为 ref
+        jsonSchemaStr = jsonSchemaStr.replace(/\"\$ref\"/g, '\"ref\"');
+        // 替换 x-apifox-overrides 为 APIPOST_OVERRIDES
+        jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-overrides\"/g, '\"APIPOST_OVERRIDES\"');
+        // 还原为对象
+        model.schema = JSON.parse(jsonSchemaStr);
+      }
+    } catch (error) { }
+    return model;
+  }
+  handleModelApiAndFolder(items: any[], parent: any = null) {
+    var root = this;
+    for (const item of items) {
+      let target;
+      if (item.hasOwnProperty('items') && !item.hasOwnProperty('schema')) {
+        target = root.createDataModelNewFolder(item);
+        root.handleModelApiAndFolder(item.items, target);
+      }
+      if (item.hasOwnProperty('schema')) {
+        target = root.createNewModelData(item);
+      }
+      if (parent && parent != null) {
+        parent.children.push(target);
+      } else {
+        root.dataModel.push(target);
+      }
+    }
+  }
+  handleModelData(json: any) {
+    if (json.hasOwnProperty('schemaCollection') && json.schemaCollection instanceof Array && json.schemaCollection.length > 0) {
+      let rootData = json.schemaCollection[0];
+      if (rootData?.items instanceof Array && rootData?.items.length > 0) {
+        this.handleModelApiAndFolder(rootData.items, null);
+      }
+    }
+  }
   convert(json: object) {
     var validationResult = this.validate(json);
     if (validationResult.status === 'error') {
       return validationResult;
     }
     this.handleInfo(json);
+    this.handleEnvs(json);
     this.handleApiCollection(json);
+    this.handleModelData(json);
     validationResult.data = {
       project: this.project,
-      apis: this.apis
+      apis: this.apis,
+      envs: this.envs,
+      dataModel: this.dataModel,
     }
-    console.log('project', JSON.stringify(validationResult));
+    console.log('project', JSON.stringify(validationResult.data.dataModel));
     return validationResult;
   }
 }
