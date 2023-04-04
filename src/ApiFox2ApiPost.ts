@@ -144,7 +144,11 @@ class Apifox2Apipost {
         if (foxEnv.hasOwnProperty('variables') && foxEnv.variables instanceof Array && foxEnv.variables.length > 0) {
           for (const variable of foxEnv.variables) {
             if (variable.hasOwnProperty('name')) {
-              temp_env.list[String(variable.name)] = variable?.value || '';
+              temp_env.list[String(variable.name)] = {
+                current_value: variable?.value || '',
+                description: variable?.description || '',
+                value: variable?.initialValue || '',
+              };
             }
           }
         }
