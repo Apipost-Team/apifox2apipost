@@ -343,7 +343,7 @@ class Apifox2Apipost {
   }
   handleCommonScript(id: any) {
     if (this.project?.commonScripts instanceof Array) {
-      let findItem = this.project.commonScripts.find((item: any) => item?.id === id)
+      let findItem = this.project.commonScripts.find((item: any) => item?.id == id)
       if (findItem && findItem != undefined && typeof findItem?.content === 'string') {
         return findItem?.content + '\n';
       }
@@ -537,7 +537,7 @@ class Apifox2Apipost {
       env: this.envs,
       dataModel: this.dataModel,
     }
-    console.log('project', JSON.stringify(validationResult.data.dataModel));
+    console.log('project', JSON.stringify(validationResult.data.apis));
     return validationResult;
   }
 }
