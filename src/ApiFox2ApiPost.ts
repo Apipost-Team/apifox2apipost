@@ -530,7 +530,7 @@ class Apifox2Apipost {
     validationResult.data = {
       project: this.project,
       apis: this.apis,
-      envs: this.envs,
+      env: this.envs,
       dataModel: this.dataModel,
     }
     console.log('project', JSON.stringify(validationResult.data.dataModel));
