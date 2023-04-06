@@ -173,7 +173,7 @@ class Apifox2Apipost {
       },
       mark: status || 'developing',
     }
-    const { request } = api;
+    const { request } = newCase;
     if (caseItem.hasOwnProperty('parameters')) {
       for (const key in caseItem.parameters) {
         let item = caseItem.parameters[key];
@@ -300,7 +300,9 @@ class Apifox2Apipost {
               })
           });
         }
-      } else {
+      } else if(caseItem.requestBody['type'] == 'none'){
+        request.body.mode = 'none';
+      }else{
         request.body.mode = 'json';
         request.body.raw = caseItem.requestBody.sampleValue || caseItem.requestBody.example || '';
       }
