@@ -156,6 +156,165 @@ class Apifox2Apipost {
       }
     }
   }
+  createNewCase(caseItem: any, api:any){
+    var newCase: any = {
+      name: caseItem.name || '新建示例',
+      target_type: 'sample',
+      url: api.path || "",
+      method: api.method.toUpperCase() || 'GET',
+      request: {
+        'query': [],
+        'header': [],
+        'description': api.description || '',
+        event: {
+          pre_script: '',
+          test: '',
+        }
+      },
+      mark: status || 'developing',
+    }
+    const { request } = api;
+    if (caseItem.hasOwnProperty('parameters')) {
+      for (const key in caseItem.parameters) {
+        let item = caseItem.parameters[key];
+        if (key == 'query') {
+          for (const p of item) {
+            p.name && request.query.push({
+              is_checked: "1",
+              type: 'Text',
+              key: p.name,
+              value: p?.sampleValue || p?.example || '',
+              not_null: "1",
+              description: p.description || '',
+              field_type: "Text"
+            });
+          }
+        } else if (key == 'header') {
+          for (const p of item) {
+            p.name && request.header.push({
+              is_checked: "1",
+              type: 'Text',
+              key: p.name,
+              value: p.sampleValue || p?.example || '',
+              not_null: "1",
+              description: p.description || '',
+              field_type: "Text"
+            });
+          }
+        }
+      }
+    }
+    if (caseItem.hasOwnProperty('auth')) {
+      // 全证
+      let apiPostAuth = {
+        type: 'noauth',
+        kv: {
+          key: '',
+          value: '',
+        },
+        bearer: {
+          key: ''
+        },
+        basic: {
+          username: '',
+          password: ''
+        }
+      }
+      const { auth } = caseItem;
+      if (auth) {
+        let type = auth['type'] || 'noauth';
+        let apikey = auth['apikey'];
+        let bearer = auth['bearer'];
+        let basic = auth['basic'];
+        switch (type) {
+          case 'apikey':
+            type = 'kv';
+            break;
+          case 'bearer':
+            type = 'bearer';
+            break;
+          case 'basic':
+            type = 'basic';
+            break;
+          default:
+            type = 'noauth';
+            break;
+        }
+        apiPostAuth.type = type;
+        if (apikey) {
+          apiPostAuth.kv = {
+            key: apikey['key'] || '',
+            value: apikey['value'] || ''
+          }
+        }
+        if (bearer) {
+          apiPostAuth.bearer = {
+            key: bearer['token'] || '',
+          }
+        }
+        if (basic) {
+          apiPostAuth.basic = {
+            username: basic['username'] || '',
+            password: basic['password'] || ''
+          }
+        }
+        request['auth'] = apiPostAuth;
+      }
+    }
+    if (caseItem.hasOwnProperty('requestBody')) {
+      request.body = {
+        "mode": "none",
+        "parameter": [],
+        "raw": '',
+        "raw_para": []
+      }
+      if (caseItem.requestBody['type'] == 'application/x-www-form-urlencoded') {
+        request.body.mode = 'urlencoded';
+        if (caseItem.requestBody.hasOwnProperty('parameters') && caseItem.requestBody.parameters instanceof Array) {
+          caseItem.requestBody.parameters.forEach((param: any) => {
+            param.name && request.body.parameter.push(
+              {
+                is_checked: "1",
+                type: 'Text',
+                key: param.name || "",
+                value: param.sampleValue || param.example || "",
+                not_null: "1",
+                description: param.description || "",
+                field_type: "Text"
+              })
+          });
+        }
+      } else if (caseItem.requestBody['type'] == 'multipart/form-data') {
+        request.body.mode = 'form-data';
+        if (caseItem.requestBody.hasOwnProperty('parameters') && caseItem.requestBody.parameters instanceof Array) {
+          caseItem.requestBody.parameters.forEach((param: any) => {
+            param.name && request.body.parameter.push(
+              {
+                is_checked: "1",
+                type: param['type'] && param['type'] == 'file' ? 'File' : 'Text',
+                key: param.name || "",
+                value: param.sampleValue || param.example || "",
+                not_null: "1",
+                description: param.description || "",
+                field_type: "Text"
+              })
+          });
+        }
+      } else {
+        request.body.mode = 'json';
+        request.body.raw = caseItem.requestBody.sampleValue || caseItem.requestBody.example || '';
+      }
+    }
+    // 前置执行脚本
+    if (caseItem.hasOwnProperty('preProcessors') && caseItem.preProcessors instanceof Array) {
+      request.event.pre_script = this.handlePreProcessors(caseItem.preProcessors);
+    }
+    // 后执行脚本
+    if (caseItem.hasOwnProperty('postProcessors') && caseItem.postProcessors instanceof Array) {
+      request.event.test = this.handlePreProcessors(caseItem.postProcessors);
+    }
+    return newCase;
+  }
   createNewApi(item: any) {
     const { api: foxApi } = item;
     let status = foxApi?.status;
@@ -324,6 +483,17 @@ class Apifox2Apipost {
     if (foxApi.hasOwnProperty('postProcessors') && foxApi.postProcessors instanceof Array) {
       request.event.test = this.handlePreProcessors(foxApi.postProcessors);
     }
+
+    // 接口用例
+    if (foxApi.hasOwnProperty('cases') && foxApi.cases instanceof Array && foxApi.cases.length > 0) {
+      api.children = [];
+      for (const foxCase of foxApi.cases) {
+        if(Object.prototype.toString.call(foxCase) === '[object Object]'){
+          api.children.push(this.createNewCase(foxCase, api));
+        }
+      }
+    }
+    
     return api;
   }
   handlePreProcessors(PreProcessors: any) {
