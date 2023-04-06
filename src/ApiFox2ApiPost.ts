@@ -160,7 +160,7 @@ class Apifox2Apipost {
     var newCase: any = {
       name: caseItem.name || '新建示例',
       target_type: 'sample',
-      url: api.path || "",
+      url: caseItem?.path || api?.url || "",
       method: api.method.toUpperCase() || 'GET',
       request: {
         'query': [],
