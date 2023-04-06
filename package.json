@@ -1,6 +1,6 @@
 {
   "name": "apifox2apipost",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "apifox2apipost",
   "main": "dist/index.js",
   "files": [
