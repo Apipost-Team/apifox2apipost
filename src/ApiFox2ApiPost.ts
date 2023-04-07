@@ -537,68 +537,73 @@ class Apifox2Apipost {
       },
       'children': [],
     };
-    // 全证
-    let apiPostAuth = {
-      type: 'noauth',
-      kv: {
-        key: '',
-        value: '',
-      },
-      bearer: {
-        key: ''
-      },
-      basic: {
-        username: '',
-        password: ''
+    const { request } = newFolder;
+    // 目录认证
+    if(item.hasOwnProperty('auth')){
+      // 认证
+      const { auth } = item;
+      let apiPostAuth = {
+        type: 'noauth',
+        kv: {
+          key: '',
+          value: '',
+        },
+        bearer: {
+          key: ''
+        },
+        basic: {
+          username: '',
+          password: ''
+        }
+      }
+      if (auth) {
+        let type = auth['type'] || 'noauth';
+        let apikey = auth['apikey'];
+        let bearer = auth['bearer'];
+        let basic = auth['basic'];
+        switch (type) {
+          case 'apikey':
+            type = 'kv';
+            break;
+          case 'bearer':
+            type = 'bearer';
+            break;
+          case 'basic':
+            type = 'basic';
+            break;
+          default:
+            type = 'noauth';
+            break;
+        }
+        apiPostAuth.type = type;
+        if (apikey) {
+          apiPostAuth.kv = {
+            key: apikey['key'] || '',
+            value: apikey['value'] || ''
+          }
+        }
+        if (bearer) {
+          apiPostAuth.bearer = {
+            key: bearer['token'] || '',
+          }
+        }
+        if (basic) {
+          apiPostAuth.basic = {
+            username: basic['username'] || '',
+            password: basic['password'] || ''
+          }
+        }
+        request['auth'] = apiPostAuth;
       }
     }
-    const { auth } = item;
-    if (auth) {
-      let type = auth['type'] || 'noauth';
-      let apikey = auth['apikey'];
-      let bearer = auth['bearer'];
-      let basic = auth['basic'];
-      switch (type) {
-        case 'apikey':
-          type = 'kv';
-          break;
-        case 'bearer':
-          type = 'bearer';
-          break;
-        case 'basic':
-          type = 'basic';
-          break;
-        default:
-          type = 'noauth';
-          break;
-      }
-      apiPostAuth.type = type;
-      if (apikey) {
-        apiPostAuth.kv = {
-          key: apikey['key'] || '',
-          value: apikey['value'] || ''
-        }
-      }
-      if (bearer) {
-        apiPostAuth.bearer = {
-          key: bearer['token'] || '',
-        }
-      }
-      if (basic) {
-        apiPostAuth.basic = {
-          username: basic['username'] || '',
-          password: basic['password'] || ''
-        }
-      }
-      newFolder['auth'] = apiPostAuth;
-    }
+  
     // 目录预执行脚本
     if (item.hasOwnProperty('preProcessors') && item.preProcessors instanceof Array && item.preProcessors.length > 0) {
-      newFolder.request.srcipt.pre_script = this.handlePreProcessors(item.preProcessors);
+      request.srcipt.pre_script = this.handlePreProcessors(item.preProcessors);
     }
     // 目录后执行脚本
     if (item.hasOwnProperty('postProcessors') && item.postProcessors instanceof Array && item.postProcessors.length > 0) {
-      newFolder.request.srcipt.test = this.handlePreProcessors(item.postProcessors);
+      request.srcipt.test = this.handlePreProcessors(item.postProcessors);
     }
     return newFolder;
   }
