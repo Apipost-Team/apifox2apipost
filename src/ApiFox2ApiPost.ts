@@ -10,6 +10,14 @@ const STATUS_NAME: any = {
   designing: '设计中',
 }
 
+const BODY_TYPE: any = {
+  'application/x-www-form-urlencoded': 'urlencoded',
+  'application/xml': 'xml',
+  'multipart/form-data': 'form-data',
+  'text/plain': 'plain',
+  none: 'none',
+}
+
 class Apifox2Apipost {
   version: string;
   project: any;
@@ -156,7 +164,7 @@ class Apifox2Apipost {
       }
     }
   }
-  createNewCase(caseItem: any, api:any){
+  createNewCase(caseItem: any, api: any) {
     var newCase: any = {
       name: caseItem.name || '新建示例',
       target_type: 'sample',
@@ -183,7 +191,7 @@ class Apifox2Apipost {
               is_checked: "1",
               type: 'Text',
               key: p.name,
-              value: p?.sampleValue || p?.example || '',
+              value: p?.value || p?.sampleValue || p?.example || '',
               not_null: "1",
               description: p.description || '',
               field_type: "Text"
@@ -195,7 +203,7 @@ class Apifox2Apipost {
               is_checked: "1",
               type: 'Text',
               key: p.name,
-              value: p.sampleValue || p?.example || '',
+              value: p?.value || p.sampleValue || p?.example || '',
               not_null: "1",
               description: p.description || '',
               field_type: "Text"
@@ -262,14 +270,15 @@ class Apifox2Apipost {
       }
     }
     if (caseItem.hasOwnProperty('requestBody')) {
+      let bodyType = caseItem.requestBody['type'];
       request.body = {
         "mode": "none",
         "parameter": [],
         "raw": '',
         "raw_para": []
       }
-      if (caseItem.requestBody['type'] == 'application/x-www-form-urlencoded') {
-        request.body.mode = 'urlencoded';
+      request.body.mode = BODY_TYPE?.[bodyType] || 'json';
+      if (bodyType == 'application/x-www-form-urlencoded') {
         if (caseItem.requestBody.hasOwnProperty('parameters') && caseItem.requestBody.parameters instanceof Array) {
           caseItem.requestBody.parameters.forEach((param: any) => {
             param.name && request.body.parameter.push(
@@ -277,15 +286,14 @@ class Apifox2Apipost {
                 is_checked: "1",
                 type: 'Text',
                 key: param.name || "",
-                value: param.sampleValue || param.example || "",
+                value: param?.value || param.sampleValue || param.example || "",
                 not_null: "1",
                 description: param.description || "",
                 field_type: "Text"
               })
           });
         }
-      } else if (caseItem.requestBody['type'] == 'multipart/form-data') {
-        request.body.mode = 'form-data';
+      } else if (bodyType == 'multipart/form-data') {
         if (caseItem.requestBody.hasOwnProperty('parameters') && caseItem.requestBody.parameters instanceof Array) {
           caseItem.requestBody.parameters.forEach((param: any) => {
             param.name && request.body.parameter.push(
@@ -293,17 +301,15 @@ class Apifox2Apipost {
                 is_checked: "1",
                 type: param['type'] && param['type'] == 'file' ? 'File' : 'Text',
                 key: param.name || "",
-                value: param.sampleValue || param.example || "",
+                value: param?.value || param.sampleValue || param.example || "",
                 not_null: "1",
                 description: param.description || "",
                 field_type: "Text"
               })
           });
         }
-      } else if(caseItem.requestBody['type'] == 'none'){
-        request.body.mode = 'none';
-      }else{
-        request.body.mode = 'json';
+      } else if (bodyType == 'none') {
+      } else {
         request.body.raw = caseItem.requestBody.sampleValue || caseItem.requestBody.example || '';
       }
     }
@@ -355,7 +361,7 @@ class Apifox2Apipost {
               is_checked: "1",
               type: 'Text',
               key: p.name,
-              value: p?.sampleValue || p?.example || '',
+              value: p?.value || p?.sampleValue || p?.example || '',
               not_null: "1",
               description: p.description || '',
               field_type: "Text"
@@ -367,7 +373,7 @@ class Apifox2Apipost {
               is_checked: "1",
               type: 'Text',
               key: p.name,
-              value: p.sampleValue || p?.example || '',
+              value: p?.value || p.sampleValue || p?.example || '',
               not_null: "1",
               description: p.description || '',
               field_type: "Text"
@@ -434,14 +440,15 @@ class Apifox2Apipost {
       }
     }
     if (foxApi.hasOwnProperty('requestBody')) {
+      let bodyType = foxApi.requestBody['type'];
       request.body = {
         "mode": "none",
         "parameter": [],
         "raw": '',
         "raw_para": []
       }
-      if (foxApi.requestBody['type'] == 'application/x-www-form-urlencoded') {
-        request.body.mode = 'urlencoded';
+      request.body.mode = BODY_TYPE?.[bodyType] || 'json';
+      if (bodyType == 'application/x-www-form-urlencoded') {
         if (foxApi.requestBody.hasOwnProperty('parameters') && foxApi.requestBody.parameters instanceof Array) {
           foxApi.requestBody.parameters.forEach((param: any) => {
             param.name && request.body.parameter.push(
@@ -449,15 +456,14 @@ class Apifox2Apipost {
                 is_checked: "1",
                 type: 'Text',
                 key: param.name || "",
-                value: param.sampleValue || param.example || "",
+                value: param?.value || param.sampleValue || param.example || "",
                 not_null: "1",
                 description: param.description || "",
                 field_type: "Text"
               })
           });
         }
-      } else if (foxApi.requestBody['type'] == 'multipart/form-data') {
-        request.body.mode = 'form-data';
+      } else if (bodyType == 'multipart/form-data') {
         if (foxApi.requestBody.hasOwnProperty('parameters') && foxApi.requestBody.parameters instanceof Array) {
           foxApi.requestBody.parameters.forEach((param: any) => {
             param.name && request.body.parameter.push(
@@ -465,17 +471,15 @@ class Apifox2Apipost {
                 is_checked: "1",
                 type: param['type'] && param['type'] == 'file' ? 'File' : 'Text',
                 key: param.name || "",
-                value: param.sampleValue || param.example || "",
+                value: param?.value || param.sampleValue || param.example || "",
                 not_null: "1",
                 description: param.description || "",
                 field_type: "Text"
               })
           });
         }
-      } else if(foxApi.requestBody['type'] == 'none'){
-        request.body.mode = 'none';
+      } else if (bodyType == 'none') {
       } else {
-        request.body.mode = 'json';
         request.body.raw = foxApi.requestBody.sampleValue || foxApi.requestBody.example || '';
       }
     }
@@ -492,12 +496,12 @@ class Apifox2Apipost {
     if (foxApi.hasOwnProperty('cases') && foxApi.cases instanceof Array && foxApi.cases.length > 0) {
       api.children = [];
       for (const foxCase of foxApi.cases) {
-        if(Object.prototype.toString.call(foxCase) === '[object Object]'){
+        if (Object.prototype.toString.call(foxCase) === '[object Object]') {
           api.children.push(this.createNewCase(foxCase, api));
         }
       }
     }
-    
+
     return api;
   }
   handlePreProcessors(PreProcessors: any) {
@@ -539,7 +543,7 @@ class Apifox2Apipost {
     };
     const { request } = newFolder;
     // 目录认证
-    if(item.hasOwnProperty('auth')){
+    if (item.hasOwnProperty('auth')) {
       // 认证
       const { auth } = item;
       let apiPostAuth = {
@@ -596,7 +600,7 @@ class Apifox2Apipost {
         request['auth'] = apiPostAuth;
       }
     }
-  
+
     // 目录预执行脚本
     if (item.hasOwnProperty('preProcessors') && item.preProcessors instanceof Array && item.preProcessors.length > 0) {
       request.srcipt.pre_script = this.handlePreProcessors(item.preProcessors);
