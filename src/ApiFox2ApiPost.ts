@@ -71,10 +71,10 @@ class Apifox2Apipost {
       test: '',
     };
     // 全局参数 
-    if (json.hasOwnProperty('commonParameters') && json.commonParameters.hasOwnProperty('parameters')) {
+    if (Object.prototype.toString.call(json?.commonParameters) === '[object Object]' && json.commonParameters.hasOwnProperty('parameters')) {
       let parameters = json.commonParameters.parameters;
       // header
-      if (parameters.hasOwnProperty('header') && parameters.header instanceof Array) {
+      if (Object.prototype.toString.call(parameters?.header) === '[object Array]') {
         this.project.header = [];
         for (const h of parameters.header) {
           this.project.header.push({
@@ -89,7 +89,7 @@ class Apifox2Apipost {
         }
       }
       // query
-      if (parameters.hasOwnProperty('query') && parameters.query instanceof Array) {
+      if (Object.prototype.toString.call(parameters?.query) === '[object Array]') {
         this.project.query = [];
         for (const q of parameters.query) {
           this.project.query.push({
@@ -104,7 +104,7 @@ class Apifox2Apipost {
         }
       }
       // body
-      if (parameters.hasOwnProperty('body') && parameters.body instanceof Array) {
+      if (Object.prototype.toString.call(parameters?.body) === '[object Array]') {
         this.project.body = [];
         for (const b of parameters.body) {
           this.project.body.push({
@@ -120,7 +120,7 @@ class Apifox2Apipost {
       }
     }
     // 全局变量 globalVars
-    if (json.hasOwnProperty('globalVariables') && json.globalVariables instanceof Array && json.globalVariables.length > 0) {
+    if (Object.prototype.toString.call(json?.globalVariables) === '[object Array]' && json.globalVariables.length > 0) {
       this.project.globalVars = {};
       for (const globalVariable of json.globalVariables) {
         if (globalVariable.hasOwnProperty('variables') && globalVariable.variables instanceof Array && globalVariable.variables.length > 0) {
@@ -133,7 +133,7 @@ class Apifox2Apipost {
       };
     };
     // 全局脚本
-    if (json.hasOwnProperty('commonScripts') && json.commonScripts instanceof Array && json.commonScripts.length > 0) {
+    if (Object.prototype.toString.call(json?.commonScripts) === '[object Array]' && json.commonScripts.length > 0) {
       // for (const commonScript of json.commonScripts) {
 
       // }
@@ -179,10 +179,10 @@ class Apifox2Apipost {
           test: '',
         }
       },
-      mark: status || 'developing',
+      mark: api?.status || 'developing',
     }
     const { request } = newCase;
-    if (caseItem.hasOwnProperty('parameters')) {
+    if (Object.prototype.toString.call(caseItem?.parameters) === '[object Object]') {
       for (const key in caseItem.parameters) {
         let item = caseItem.parameters[key];
         if (key == 'query') {
@@ -269,7 +269,7 @@ class Apifox2Apipost {
         request['auth'] = apiPostAuth;
       }
     }
-    if (caseItem.hasOwnProperty('requestBody')) {
+    if (Object.prototype.toString.call(caseItem?.requestBody) === '[object Object]') {
       let bodyType = caseItem.requestBody['type'];
       request.body = {
         "mode": "none",
@@ -352,7 +352,7 @@ class Apifox2Apipost {
       mark: status || 'developing',
     }
     const { request } = api;
-    if (foxApi.hasOwnProperty('parameters')) {
+    if (Object.prototype.toString.call(foxApi?.parameters) === '[object Object]') {
       for (const key in foxApi.parameters) {
         let item = foxApi.parameters[key];
         if (key == 'query') {
@@ -439,7 +439,7 @@ class Apifox2Apipost {
         request['auth'] = apiPostAuth;
       }
     }
-    if (foxApi.hasOwnProperty('requestBody')) {
+    if (Object.prototype.toString.call(foxApi?.requestBody) === '[object Object]') {
       let bodyType = foxApi.requestBody['type'];
       request.body = {
         "mode": "none",

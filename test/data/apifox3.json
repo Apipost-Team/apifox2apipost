@@ -1,0 +1,2819 @@
+{
+  "apifoxProject": "1.0.0",
+  "$schema": {
+    "app": "apifox",
+    "type": "project",
+    "version": "1.2.0"
+  },
+  "info": {
+    "name": "1",
+    "description": "",
+    "mockRule": {
+      "rules": [],
+      "enableSystemRule": true
+    }
+  },
+  "responseCollection": [],
+  "apiCollection": [{
+    "name": "根目录",
+    "parentId": 0,
+    "serverId": "",
+    "description": "",
+    "preProcessors": [],
+    "postProcessors": [],
+    "auth": {},
+    "identityPattern": {
+      "httpApi": {
+        "type": "methodAndPath",
+        "bodyType": "",
+        "fields": []
+      }
+    },
+    "items": [{
+      "name": "获取用户详情",
+      "api": {
+        "id": "3490075",
+        "method": "get",
+        "path": "http://186.137.181.104:30780/api/v1/collection-visited-projects",
+        "parameters": {
+          "query": [{
+            "name": "userDataId",
+            "required": false,
+            "description": "",
+            "id": "0lBAzk9CXn",
+            "example": "345337",
+            "type": "string"
+          }, {
+            "name": "locale",
+            "required": false,
+            "description": "",
+            "id": "RNlxFHz6KN",
+            "example": "zh-CN",
+            "type": "string"
+          }],
+          "cookie": [{
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "locale",
+            "id": "MRCoUSKzYa",
+            "example": "zh-cn"
+          }],
+          "header": [{
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Authorization",
+            "id": "8ppsAiQ3JW",
+            "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MTE5LCJ0cyI6ImZjZmIwZGE4MmU1N2QzNjkiLCJpYXQiOjE2NjQ0MTc3OTUyNTd9.cxP_mbmp7WreH5qF2vTci8qGNUgQPtijEjr6i5JKAQg"
+          }]
+        },
+        "auth": {
+          "type": "noauth"
+        },
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "104712",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "none",
+          "parameters": [],
+          "example": "{\"account\":\"96555\",\"password\":\"123456\"}"
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 20,
+        "cases": [{
+          "id": 3540384,
+          "type": "http",
+          "path": null,
+          "name": "成功",
+          "responseId": 104712,
+          "parameters": {
+            "query": [{
+              "name": "userDataId",
+              "value": "329246",
+              "enable": true,
+              "id": "rK2YVqQwER",
+              "relatedName": "userDataId"
+            }, {
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "Qzro5uzpf0",
+              "relatedName": "locale"
+            }],
+            "cookie": [{
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "5L6Ts7aME3",
+              "relatedName": "locale"
+            }],
+            "header": [{
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+              "enable": true,
+              "id": "ULCG4mMH7S",
+              "relatedName": "Authorization"
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "type": "none",
+            "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+          },
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {
+            "type": "noauth"
+          },
+          "advancedSettings": {}
+        }, {
+          "id": 3540963,
+          "type": "http",
+          "path": null,
+          "name": "成功 Copy",
+          "responseId": 104712,
+          "parameters": {
+            "query": [{
+              "name": "userDataId",
+              "value": "329246",
+              "enable": true,
+              "id": "0vziFVNljX",
+              "relatedName": "userDataId"
+            }, {
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "DZBG3uM3nq",
+              "relatedName": "locale"
+            }],
+            "cookie": [{
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "tHo5CR0DYj",
+              "relatedName": "locale"
+            }],
+            "header": [{
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+              "enable": true,
+              "id": "qRRSZdpgFj",
+              "relatedName": "Authorization"
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "type": "none",
+            "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+          },
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {
+            "type": "noauth"
+          },
+          "advancedSettings": {}
+        }, {
+          "id": 3540398,
+          "type": "http",
+          "path": null,
+          "name": "记录不存在",
+          "responseId": 104712,
+          "parameters": {
+            "query": [{
+              "name": "userDataId",
+              "value": "345337",
+              "enable": true,
+              "id": "3iNeZHHg0y",
+              "relatedName": "userDataId"
+            }, {
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "0qzlUluNXf",
+              "relatedName": "locale"
+            }],
+            "cookie": [{
+              "name": "locale",
+              "value": "zh-cn",
+              "enable": true,
+              "id": "CkuWEervam",
+              "relatedName": "locale"
+            }],
+            "header": [{
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MTE5LCJ0cyI6ImZjZmIwZGE4MmU1N2QzNjkiLCJpYXQiOjE2NjQ0MTc3OTUyNTd9.cxP_mbmp7WreH5qF2vTci8qGNUgQPtijEjr6i5JKAQg",
+              "enable": true,
+              "id": "CAWEc2dpxf",
+              "relatedName": "Authorization"
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "type": "none",
+            "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+          },
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {
+            "type": "noauth"
+          },
+          "advancedSettings": {}
+        }, {
+          "id": 3540967,
+          "type": "http",
+          "path": null,
+          "name": "ces",
+          "responseId": 104712,
+          "parameters": {
+            "query": [{
+              "name": "userDataId",
+              "value": "329246",
+              "enable": true,
+              "id": "blOiKgshvK",
+              "relatedName": "userDataId"
+            }, {
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "rhaMYbI6Dv",
+              "relatedName": "locale"
+            }],
+            "cookie": [{
+              "name": "locale",
+              "value": "zh-cn",
+              "enable": true,
+              "id": "gSVljU8jnu",
+              "relatedName": "locale"
+            }],
+            "header": [{
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MTE5LCJ0cyI6ImZjZmIwZGE4MmU1N2QzNjkiLCJpYXQiOjE2NjQ0MTc3OTUyNTd9.cxP_mbmp7WreH5qF2vTci8qGNUgQPtijEjr6i5JKAQg",
+              "enable": true,
+              "id": "lB0afIkS3L",
+              "relatedName": "Authorization"
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "type": "none",
+            "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+          },
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {
+            "type": "noauth"
+          },
+          "advancedSettings": {}
+        }, {
+          "id": 3540968,
+          "type": "http",
+          "path": null,
+          "name": "记录不存在",
+          "responseId": 104712,
+          "parameters": {
+            "query": [{
+              "name": "userDataId",
+              "value": "329246",
+              "enable": true,
+              "id": "UYImMvkQKs",
+              "relatedName": "userDataId"
+            }, {
+              "name": "locale",
+              "value": "zh-CN",
+              "enable": true,
+              "id": "hdxtuZxUwB",
+              "relatedName": "locale"
+            }],
+            "cookie": [{
+              "name": "locale",
+              "value": "zh-cn",
+              "enable": true,
+              "id": "rj2EAMa7Oc",
+              "relatedName": "locale"
+            }],
+            "header": [{
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MTE5LCJ0cyI6ImZjZmIwZGE4MmU1N2QzNjkiLCJpYXQiOjE2NjQ0MTc3OTUyNTd9.cxP_mbmp7WreH5qF2vTci8qGNUgQPtijEjr6i5JKAQg",
+              "enable": true,
+              "id": "PxxIYCvdSv",
+              "relatedName": "Authorization"
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "type": "none",
+            "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+          },
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {
+            "type": "noauth"
+          },
+          "advancedSettings": {}
+        }],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {},
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "获取项目详情 Copy",
+      "api": {
+        "id": "3490246",
+        "method": "post",
+        "path": "http://186.137.170.127:9006/api/v1/openapi/devaDtlList",
+        "parameters": {
+          "query": [{
+            "name": "locale",
+            "required": false,
+            "description": "",
+            "id": "0sf9W1wJc4",
+            "example": "zh-CN",
+            "type": "string"
+          }],
+          "header": [{
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "auth-token",
+            "id": "H5Sm9d0fiV",
+            "example": "BearereyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjE1MjIxNTQ5NDE5OTQ3MTMwODksInN1YiI6IjE1MjIxNTQ5NDE5OTQ3MTMwODkiLCJsb2dpbl9uYW1lIjoiODIxNzkiLCJkZXB0SWQiOjExNCwiaXNBZG1pbiI6IjEiLCJleHAiOjE2Nzk0NzU0NDAsImlhdCI6MTY3OTQ2ODI0MH0.3S_-H4V0kOfikpFet-TlRk1BvPp1CRQNuosOvOxBbK8"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Content-Type",
+            "id": "SxknwJWhcH",
+            "example": "application/json"
+          }]
+        },
+        "auth": {},
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "105183",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "application/json",
+          "parameters": [],
+          "jsonSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "companyName": {
+                      "type": "string"
+                    }
+                  },
+                  "x-apifox-orders": ["companyName"]
+                }
+              },
+              "userId": {
+                "type": "string"
+              }
+            },
+            "required": ["data", "userId"],
+            "x-apifox-orders": ["data", "userId"]
+          },
+          "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 33,
+        "cases": [],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {
+          "isDefaultUrlEncoding": 1
+        },
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "1",
+      "api": {
+        "id": "3490360",
+        "method": "get",
+        "path": "http://186.137.198.43:8080/test/zentao/system",
+        "parameters": {
+          "query": [{
+            "name": "vtype",
+            "required": false,
+            "description": "",
+            "id": "0rlAtWAeHH",
+            "type": "string",
+            "example": "0"
+          }]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "username": "chenkai",
+            "password": "123456"
+          }
+        },
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "105348",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "none",
+          "parameters": []
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 76,
+        "cases": [{
+          "id": 3864353,
+          "type": "http",
+          "path": null,
+          "name": "成功",
+          "responseId": 105348,
+          "parameters": {
+            "query": [{
+              "name": "vtype",
+              "value": "0",
+              "enable": true,
+              "id": "GNXEOnchTv",
+              "relatedName": "vtype"
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "type": "none"
+          },
+          "preProcessors": [{
+            "type": "customScript",
+            "data": "let str_id=[];\r\nlet list=[1, 3, 5, 7, 8, 10, 12]\r\nfunction deal_day(d){  \r\n    let id_day = Math.round(Math.random(1, d));\r\n    if (id_day < 10){\r\n        str_id.push(\"0\")\r\n        str_id.push(id_day.toString())\r\n    }\r\n    else{\r\n         str_id.push(id_day.toString())\r\n    }  \r\n}\r\nfunction randid(){ \r\n    let list1 = ['11', '12', '13', '14', '15', '21', '22', '23', '31', '32', '33', '34', '35', '36', '37', '41', '42', '43',\r\n             '44', '45', '46', '50', '51', '52', '53', '54', '61', '62', '63', '64', '65', '81', '82', '83'] ; \r\n    let province_num = Math.round(Math.random(1,list1.length-1)); \r\n    str_id.push(province_num.toString);\r\n    let city_num = Math.round(Math.random(1000, 9999));\r\n    str_id.push(city_num.toString());\r\n    let id_year =Math.round(Math.random(1950, 2010));\r\n    str_id.push(id_year.toString());\r\n    let id_month = Math.round(Math.random(1, 12));\r\n    if (id_month < 10){\r\n        str_id.push(\"0\")\r\n        str_id.push(id_month.toString())\r\n}\r\n    else{\r\n        str_id.push(str(id_month))\r\n}\r\n    if (id_year % 4 == 0){ \r\n        if (id_month == 2){\r\n            deal_day(29)\r\n        }\r\n        else if(list.includes(id_month)){\r\n            deal_day(31)\r\n        }\r\n        else {\r\n             deal_day(30)\r\n        }\r\n    }\r\n    else{\r\n        if (id_month == 2){deal_day(28)}\r\n            \r\n        else if (list.includes(id_month)){\r\n            deal_day(31)\r\n        }\r\n        else{ deal_day(30)}\r\n    }\r\n    let rand_num = Math.round(Math.random(100, 999))\r\n    str_id.push(rand_num.toString)\r\n    check_num = Math.round(Math.random(1, 10))\r\n    if (check_num == 10){\r\n        str_id.push(\"x\")\r\n        }\r\n    else{\r\n        str_id.push(check_num.toString())\r\n    }\r\n    return str_id\r\n}\r\nconsole.log(randid())\r\n",
+            "disabled": false
+          }],
+          "postProcessors": [],
+          "auth": {
+            "type": "basic",
+            "basic": {
+              "username": "chenkai",
+              "password": "123456"
+            }
+          },
+          "advancedSettings": {}
+        }],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {},
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "1",
+      "api": {
+        "id": "3490382",
+        "method": "post",
+        "path": "http://186.137.180.100:5100/apifox/querycases",
+        "parameters": {
+          "query": [{
+            "name": "vtype",
+            "required": false,
+            "description": "",
+            "id": "V8aldlKZxq",
+            "example": "10",
+            "type": "string"
+          }]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "username": "chenkai",
+            "password": "123456"
+          }
+        },
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "105370",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "application/json",
+          "parameters": [],
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 86,
+        "cases": [],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {
+          "isDefaultUrlEncoding": 1
+        },
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "1",
+      "api": {
+        "id": "3498174",
+        "method": "put",
+        "path": "http://186.137.181.38:9010/api/common-auth/v2/api/auth/users/login",
+        "parameters": {
+          "query": [{
+            "id": "XiEC6Uuy0j",
+            "name": "month",
+            "example": "202201",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }],
+          "header": [{
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "X-access-captcha",
+            "example": "4bd36818-59d2-495d-9a05-be759f3d0a1d",
+            "id": "X84xWlHASw"
+          }]
+        },
+        "auth": {},
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "125277",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "none",
+          "parameters": []
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 96,
+        "cases": [],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {
+          "isDefaultUrlEncoding": 1
+        },
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "2",
+      "api": {
+        "id": "3498217",
+        "method": "post",
+        "path": "http://186.137.181.38:9010/api/devops/v1/api/web/system/listAll",
+        "parameters": {
+          "query": [{
+            "id": "znw80gosBT",
+            "name": "tid",
+            "example": "pd9dh3du",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }],
+          "header": [{
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Accept",
+            "___EditableTableDataKeyName": 6,
+            "example": "application/json",
+            "id": "DrODYQgmjs"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Accept-Encoding",
+            "___EditableTableDataKeyName": 11,
+            "example": "gzip",
+            "id": "Su69unt9Fv"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Accept-Language",
+            "___EditableTableDataKeyName": 16,
+            "example": "zh-CN",
+            "id": "P2CZ7WouEZ"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Connection",
+            "___EditableTableDataKeyName": 21,
+            "example": "keep-alive",
+            "id": "UEznTakeYS"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Content-Length",
+            "___EditableTableDataKeyName": 26,
+            "example": "0",
+            "id": "9HtPEQY9ch"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Cookie",
+            "___EditableTableDataKeyName": 31,
+            "example": "captchaKey=1db981f6-0437-4f10-8d6e-a04917403ef5; token=a6a8a43c5446906cacbd12480705ea201165df2a460119fe8bbcf0123f734e63; userId=556154928419769845; userName=77797; staffCode=77797; needReset=false; showResetTips=false; passwordExireTime=2025-04-04%2017%3A19%3A15; redirectUrl=",
+            "id": "F8FGHGrDXy"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Host",
+            "___EditableTableDataKeyName": 36,
+            "example": "186.137.181.38:9010",
+            "id": "rzOQ7jIaGE"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Origin",
+            "___EditableTableDataKeyName": 41,
+            "example": "http://186.137.181.38:9010",
+            "id": "LViefLbFcb"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "Referer",
+            "___EditableTableDataKeyName": 46,
+            "example": "http://186.137.181.38:9010/devops/main",
+            "id": "AwzWlCI2Ca"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "User-Agent",
+            "___EditableTableDataKeyName": 51,
+            "example": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML",
+            "id": "4iEXkqF4kS"
+          }, {
+            "required": false,
+            "description": "",
+            "type": "string",
+            "name": "X-access-token",
+            "___EditableTableDataKeyName": 56,
+            "example": "a6a8a43c5446906cacbd12480705ea201165df2a460119fe8bbcf0123f734e63",
+            "id": "Nw3DiJogkj"
+          }]
+        },
+        "auth": {},
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "125348",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "none",
+          "parameters": []
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 106,
+        "cases": [{
+          "id": 4211126,
+          "type": "http",
+          "path": null,
+          "name": "成功",
+          "responseId": 0,
+          "parameters": {
+            "query": [{
+              "id": "mPYSU3Quuo",
+              "relatedId": "znw80gosBT",
+              "relatedName": "tid",
+              "value": "pd9dh3du",
+              "enable": false,
+              "isDelete": false
+            }],
+            "path": [],
+            "cookie": [{
+              "id": "XhvU9bXdev",
+              "relatedName": "captchaKey",
+              "name": "captchaKey",
+              "value": "1db981f6-0437-4f10-8d6e-a04917403ef5; token=901ac477d536c4cc93c2ac3b2cf3adf167748a800af66a7d44d44507c1e4904d; userId=680429849466270874; userName=96555; staffCode=96555; needReset=false; showResetTips=false; passwordExireTime=2025-08-09%2015%3A06%3A53; redirectUrl=",
+              "type": "string",
+              "description": "",
+              "enable": false,
+              "isDelete": false
+            }],
+            "header": [{
+              "id": "Yyo4qzJN3L",
+              "relatedId": "DrODYQgmjs",
+              "relatedName": "Accept",
+              "value": "application/json",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "k3rwvtIXQx",
+              "relatedId": "Su69unt9Fv",
+              "relatedName": "Accept-Encoding",
+              "value": "gzip, deflate",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "oKm66EJDcL",
+              "relatedId": "P2CZ7WouEZ",
+              "relatedName": "Accept-Language",
+              "value": "zh-CN,zh;q=0.9",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "MPpInyzfj1",
+              "relatedId": "UEznTakeYS",
+              "relatedName": "Connection",
+              "value": "keep-alive",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "qMbz2nd5Oa",
+              "relatedId": "9HtPEQY9ch",
+              "relatedName": "Content-Length",
+              "value": "0",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "5ey5Rnj3Bd",
+              "relatedId": "F8FGHGrDXy",
+              "relatedName": "Cookie",
+              "value": "",
+              "enable": false,
+              "isDelete": true
+            }, {
+              "id": "8X3wOnLl8t",
+              "relatedId": "rzOQ7jIaGE",
+              "relatedName": "Host",
+              "value": "186.137.181.38:9010",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "xpTUUku4mL",
+              "relatedId": "LViefLbFcb",
+              "relatedName": "Origin",
+              "value": "http://186.137.181.38:9010",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "qVaGgDQleD",
+              "relatedId": "AwzWlCI2Ca",
+              "relatedName": "Referer",
+              "value": "http://186.137.181.38:9010/devops/main",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "bfo82iyrsA",
+              "relatedId": "4iEXkqF4kS",
+              "relatedName": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36",
+              "enable": false,
+              "isDelete": false
+            }, {
+              "id": "Ui2OqWkHoN",
+              "relatedId": "Nw3DiJogkj",
+              "relatedName": "X-access-token",
+              "value": "31599808510184cd4197a2153703f5a8e666af4be68484758ab99860a80f28ae",
+              "enable": true,
+              "isDelete": false
+            }]
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "header": [],
+            "cookie": []
+          },
+          "requestBody": {
+            "parameters": [],
+            "generateMode": "normal"
+          },
+          "preProcessors": [],
+          "postProcessors": [],
+          "auth": {},
+          "advancedSettings": {
+            "isDefaultUrlEncoding": 1
+          }
+        }],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {},
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "禅道",
+      "api": {
+        "id": "3498480",
+        "method": "post",
+        "path": "http://186.137.180.151:8808/biz/api.php/v1/tokens",
+        "parameters": {},
+        "auth": {},
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "126392",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "none",
+          "parameters": []
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 116,
+        "cases": [],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {},
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "禅道系统",
+      "api": {
+        "id": "3498481",
+        "method": "get",
+        "path": "http://186.137.180.151:8808/biz/api-getModel-testtask-getNewTasks.json",
+        "parameters": {
+          "query": [{
+            "id": "pF4ERaH7BN",
+            "name": "zentaosid",
+            "example": "d51ada99a7055922e6faba972b15e6ee",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }]
+        },
+        "auth": {},
+        "commonParameters": {
+          "query": [],
+          "body": [],
+          "cookie": [],
+          "header": []
+        },
+        "responses": [{
+          "id": "126393",
+          "name": "成功",
+          "code": 200,
+          "contentType": "json",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }],
+        "responseExamples": [],
+        "requestBody": {
+          "type": "none",
+          "parameters": []
+        },
+        "description": "",
+        "tags": [],
+        "status": "developing",
+        "serverId": "",
+        "operationId": "",
+        "sourceUrl": "",
+        "ordering": 126,
+        "cases": [],
+        "mocks": [],
+        "customApiFields": "{}",
+        "advancedSettings": {},
+        "mockScript": {},
+        "codeSamples": []
+      }
+    }, {
+      "name": "233",
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "preProcessors": [],
+      "postProcessors": [],
+      "auth": {},
+      "identityPattern": {
+        "httpApi": {
+          "type": "inherit",
+          "bodyType": "",
+          "fields": []
+        }
+      },
+      "items": [{
+        "name": "登录",
+        "api": {
+          "id": "3490072",
+          "method": "post",
+          "path": "http://186.137.181.104:30780/api/v1/logins",
+          "parameters": {
+            "query": [{
+              "name": "locale",
+              "required": false,
+              "description": "",
+              "type": "string",
+              "id": "1u5xNma00V",
+              "example": "zh-CN"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "Content-Type",
+              "id": "xrKD0J5BTm",
+              "example": " application/json;charset=UTF-8"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "Access-Control-Allow-Origin",
+              "id": "Sid5xkIoA7",
+              "example": " *"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "Accept",
+              "id": "U8px3Im0zj",
+              "example": " application/json"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "User-Agent",
+              "id": "aX79d9zFGD",
+              "example": " Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) apifox-pdv/2.1.13 Chrome/89.0.4389.128 Electron/12.0.16 Safari/537.36"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "X-Project-Id",
+              "id": "MHcXsJeNtd",
+              "example": " "
+            }, {
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "X-Device-Id",
+              "id": "CfgT1lTmML",
+              "example": " 306b7a6a97e7e2b95a1c2cc49f319be770e1a7995bb37f6562f593e31a4498dc"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "",
+              "name": "Accept-Encoding",
+              "id": "cZoGVR7fcy",
+              "example": " gzip, deflate"
+            }],
+            "cookie": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "locale",
+              "id": "vEahFRxdE0",
+              "example": "zh-cn"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "104709",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {}
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "example": "{\"account\":\"76797\",\"password\":\"123456\"}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "deprecated",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 10,
+          "cases": [{
+            "id": 3540371,
+            "type": "http",
+            "path": null,
+            "name": "成功",
+            "responseId": 104709,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "value": "zh-CN",
+                "enable": true,
+                "id": "Kqd7rdiZhB",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "name": "Content-Type",
+                "value": " application/json;charset=UTF-8",
+                "enable": true,
+                "id": "CdqQ1QS0s7",
+                "relatedName": "Content-Type"
+              }, {
+                "name": "Access-Control-Allow-Origin",
+                "value": " *",
+                "enable": true,
+                "id": "VtjWK3JleP",
+                "relatedName": "Access-Control-Allow-Origin"
+              }, {
+                "name": "Accept",
+                "value": " application/json",
+                "enable": true,
+                "id": "c1zmHheuC8",
+                "relatedName": "Accept"
+              }, {
+                "name": "User-Agent",
+                "value": " Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) apifox-pdv/2.1.13 Chrome/89.0.4389.128 Electron/12.0.16 Safari/537.36",
+                "enable": true,
+                "id": "OxCDANZjiH",
+                "relatedName": "User-Agent"
+              }, {
+                "name": "X-Project-Id",
+                "value": " ",
+                "enable": true,
+                "id": "MFWW1BPlNC",
+                "relatedName": "X-Project-Id"
+              }, {
+                "name": "X-Device-Id",
+                "value": " 306b7a6a97e7e2b95a1c2cc49f319be770e1a7995bb37f6562f593e31a4498dc",
+                "enable": true,
+                "id": "rRG3pPAUUp",
+                "relatedName": "X-Device-Id"
+              }, {
+                "name": "Accept-Encoding",
+                "value": " gzip, deflate",
+                "enable": true,
+                "id": "3FlTpkMQFG",
+                "relatedName": "Accept-Encoding"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "type": "application/json",
+              "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+            },
+            "preProcessors": [],
+            "postProcessors": [{
+              "type": "extractor",
+              "data": {
+                "variableName": "resp",
+                "variableType": "environment",
+                "subject": "responseJson",
+                "expression": "$.data.accessToken",
+                "template": ""
+              },
+              "disabled": false
+            }],
+            "auth": {},
+            "advancedSettings": {}
+          }, {
+            "id": 3540399,
+            "type": "http",
+            "path": null,
+            "name": "失败",
+            "responseId": 104709,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "value": "zh-CN",
+                "enable": true,
+                "id": "D94xDcpvCl",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "name": "Content-Type",
+                "value": " application/json;charset=UTF-8",
+                "enable": true,
+                "id": "ckwfPmqAFT",
+                "relatedName": "Content-Type"
+              }, {
+                "name": "Access-Control-Allow-Origin",
+                "value": " *",
+                "enable": true,
+                "id": "hQuhA9h6qY",
+                "relatedName": "Access-Control-Allow-Origin"
+              }, {
+                "name": "Accept",
+                "value": " application/json",
+                "enable": true,
+                "id": "ckUVUfnkl4",
+                "relatedName": "Accept"
+              }, {
+                "name": "User-Agent",
+                "value": " Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) apifox-pdv/2.1.13 Chrome/89.0.4389.128 Electron/12.0.16 Safari/537.36",
+                "enable": true,
+                "id": "vEucfZXMEJ",
+                "relatedName": "User-Agent"
+              }, {
+                "name": "X-Project-Id",
+                "value": " ",
+                "enable": true,
+                "id": "5ddyU2Z1wo",
+                "relatedName": "X-Project-Id"
+              }, {
+                "name": "X-Device-Id",
+                "value": " 306b7a6a97e7e2b95a1c2cc49f319be770e1a7995bb37f6562f593e31a4498dc",
+                "enable": true,
+                "id": "A92KHQvGPw",
+                "relatedName": "X-Device-Id"
+              }, {
+                "name": "Accept-Encoding",
+                "value": " gzip, deflate",
+                "enable": true,
+                "id": "STmbMKKczG",
+                "relatedName": "Accept-Encoding"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "type": "application/json",
+              "data": "{\"account\":\"96555\",\"password\":\"123456\"}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "获取项目详情",
+        "api": {
+          "id": "3490165",
+          "method": "post",
+          "path": "http://186.137.180.99:9393/apifox/run",
+          "parameters": {
+            "query": [{
+              "name": "locale",
+              "required": false,
+              "description": "",
+              "id": "51yLLZvwcH",
+              "example": "zh-CN",
+              "type": "string"
+            }, {
+              "id": "O4vYnJAtYf",
+              "name": "vtype",
+              "example": "12",
+              "required": false,
+              "description": "",
+              "type": "string"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "Authorization",
+              "id": "D4LLt5Rn5B",
+              "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "X-Project-Id",
+              "id": "HkyYT0FLY3"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "105090",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "companyName": {
+                        "type": "string"
+                      }
+                    },
+                    "x-apifox-orders": ["companyName"]
+                  }
+                },
+                "userId": {
+                  "type": "string"
+                }
+              },
+              "required": ["data", "userId"],
+              "x-apifox-orders": ["data", "userId"]
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "companyName": {
+                        "type": "string"
+                      },
+                      "ity": {
+                        "type": "string"
+                      }
+                    },
+                    "x-apifox-orders": ["companyName", "ity"],
+                    "required": ["ity"]
+                  }
+                },
+                "userId": {
+                  "type": "string"
+                }
+              },
+              "required": ["data", "userId"],
+              "x-apifox-orders": ["data", "userId"]
+            },
+            "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "developing",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 30,
+          "cases": [{
+            "id": 3540982,
+            "type": "http",
+            "path": null,
+            "name": "参数异常--自动生成",
+            "responseId": 105090,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "id": "XB8HbI7oDd",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "name": "Authorization",
+                "id": "W6dqEjvtdt",
+                "relatedName": "Authorization"
+              }, {
+                "name": "X-Project-Id",
+                "id": "EgpRYPpYlR",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "type": "application/json"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }, {
+            "id": 3540987,
+            "type": "http",
+            "path": null,
+            "name": "参数异常",
+            "responseId": 105090,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "sampleValue": "zh-CN",
+                "required": false,
+                "id": "m5f5BJldV3",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "required": false,
+                "name": "Authorization",
+                "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "id": "ZHS9Mndrrq",
+                "relatedName": "Authorization"
+              }, {
+                "required": false,
+                "name": "X-Project-Id",
+                "id": "7qBn5QusNw",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }, {
+            "id": 3864383,
+            "type": "http",
+            "path": null,
+            "name": "成功",
+            "responseId": 105090,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "value": "zh-CN",
+                "enable": true,
+                "id": "uktDlhcPyr",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "enable": true,
+                "id": "NekuBOlfBL",
+                "relatedName": "Authorization"
+              }, {
+                "name": "X-Project-Id",
+                "enable": true,
+                "id": "eiZNmQlI58",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "type": "application/json",
+              "data": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [{
+              "type": "customScript",
+              "data": "let str_id=[];\r\nlet list=[1, 3, 5, 7, 8, 10, 12]\r\nfunction deal_day(d){  \r\n    let id_day = Math.floor(Math.random()*d+1);\r\n    if (id_day < 10){\r\n        str_id.push(\"0\")\r\n        str_id.push(id_day.toString())\r\n    }\r\n    else{\r\n         str_id.push(id_day.toString())\r\n    }  \r\n}\r\nfunction randid(){ \r\n    let list1 = ['11', '12', '13', '14', '15', '21', '22', '23', '31', '32', '33', '34', '35', '36', '37', '41', '42', '43',\r\n             '44', '45', '46', '50', '51', '52', '53', '54', '61', '62', '63', '64', '65', '81', '82', '83'] ; \r\n    let province_num = Math.floor(Math.random()*(list1.length-1)+1).toString(); \r\n    str_id.push(list1[province_num]);\r\n    let city_num = Math.floor(Math.random()*8999+1000).toString();\r\n    str_id.push(city_num);\r\n    let id_year =Math.floor(Math.random()*60+1950).toString();\r\n    str_id.push(id_year);\r\n    let id_month = Math.floor(Math.random()*12+1).toString();\r\n    if (id_month < 10){\r\n        str_id.push(\"0\")\r\n        str_id.push(id_month.toString())\r\n}\r\n    else{\r\n        str_id.push(id_month.toString())\r\n}\r\n    if (id_year % 4 == 0){ \r\n        if (id_month == 2){\r\n            deal_day(29)\r\n        }\r\n        else if(list.includes(id_month)){\r\n            deal_day(31)\r\n        }\r\n        else {\r\n             deal_day(30)\r\n        }\r\n    }\r\n    else{\r\n        if (id_month == 2){deal_day(28)}\r\n            \r\n        else if (list.includes(id_month)){\r\n            deal_day(31)\r\n        }\r\n        else{ deal_day(30)}\r\n    }\r\n    let rand_num = Math.floor(Math.random()*899+100)\r\n    str_id.push(rand_num.toString())\r\n    check_num = Math.floor(Math.random()*10+1)\r\n    if (check_num == 10){\r\n        str_id.push(\"x\")\r\n        }\r\n    else{\r\n        str_id.push(check_num.toString())\r\n    }\r\n    return str_id.join(\"\")\r\n}\r\nconsole.log(randid())\r\n",
+              "disabled": false
+            }],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "获取项目详情 Copy Copy",
+        "api": {
+          "id": "3490247",
+          "method": "post",
+          "path": "http://186.137.181.104:30780/api/v1/api-cases",
+          "parameters": {
+            "query": [{
+              "name": "locale",
+              "required": false,
+              "description": "",
+              "id": "gqXiVjnuSd",
+              "example": "zh-CN",
+              "type": "string"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "Authorization",
+              "id": "0XlFFWKKPa",
+              "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "X-Project-Id",
+              "id": "i0YKS27928"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "105184",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {}
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "companyName": {
+                        "type": "string"
+                      }
+                    },
+                    "x-apifox-orders": ["companyName"]
+                  }
+                },
+                "userId": {
+                  "type": "string"
+                }
+              },
+              "required": ["data", "userId"],
+              "x-apifox-orders": ["data", "userId"]
+            },
+            "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "developing",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 34,
+          "cases": [{
+            "id": 3541007,
+            "type": "http",
+            "path": null,
+            "name": "参数异常",
+            "responseId": 105184,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "sampleValue": "zh-CN",
+                "required": false,
+                "id": "zDYgYkGrWE",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "required": false,
+                "name": "Authorization",
+                "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "id": "of2EfTHTKR",
+                "relatedName": "Authorization"
+              }, {
+                "required": false,
+                "name": "X-Project-Id",
+                "id": "tYsJC2xb5E",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }, {
+            "id": 3541008,
+            "type": "http",
+            "path": null,
+            "name": "参数异常",
+            "responseId": 105184,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "sampleValue": "zh-CN",
+                "required": false,
+                "id": "rPOhBkOWQH",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "required": false,
+                "name": "Authorization",
+                "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "id": "Hb5f7MeCv7",
+                "relatedName": "Authorization"
+              }, {
+                "required": false,
+                "name": "X-Project-Id",
+                "id": "OdRv4i0ue1",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "获取项目详情 Copy Copy",
+        "api": {
+          "id": "3490320",
+          "method": "post",
+          "path": "http://186.137.181.104:30780/api/v1/api-cases",
+          "parameters": {
+            "query": [{
+              "name": "locale",
+              "required": false,
+              "description": "",
+              "id": "JRNLJa2omq",
+              "example": "zh-CN",
+              "type": "string"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "Authorization",
+              "id": "alRqLG6IJZ",
+              "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "X-Project-Id",
+              "id": "0j4eU1xszP"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "105301",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {}
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "companyName": {
+                        "type": "string"
+                      }
+                    },
+                    "x-apifox-orders": ["companyName"]
+                  }
+                },
+                "userId": {
+                  "type": "string"
+                }
+              },
+              "required": ["data", "userId"],
+              "x-apifox-orders": ["data", "userId"]
+            },
+            "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "developing",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 42,
+          "cases": [{
+            "id": 3548695,
+            "type": "http",
+            "path": null,
+            "name": "参数异常",
+            "responseId": 0,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "sampleValue": "zh-CN",
+                "required": false,
+                "id": "WADonkIc7Y",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "required": false,
+                "name": "Authorization",
+                "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "id": "fU2bgoJlvK",
+                "relatedName": "Authorization"
+              }, {
+                "required": false,
+                "name": "X-Project-Id",
+                "id": "GqBudXGXu4",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "获取项目详情 Copy Copy Copy Copy",
+        "api": {
+          "id": "3490322",
+          "method": "post",
+          "path": "http://186.137.181.104:30780/api/v1/api-cases",
+          "parameters": {
+            "query": [{
+              "name": "locale",
+              "required": false,
+              "description": "",
+              "id": "t0K3F7bWx8",
+              "example": "zh-CN",
+              "type": "string"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "Authorization",
+              "id": "gKys8ckBqK",
+              "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "X-Project-Id",
+              "id": "HEDKn9qmly"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "105303",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {}
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "companyName": {
+                        "type": "string"
+                      }
+                    },
+                    "x-apifox-orders": ["companyName"]
+                  }
+                },
+                "userId": {
+                  "type": "string"
+                }
+              },
+              "required": ["data", "userId"],
+              "x-apifox-orders": ["data", "userId"]
+            },
+            "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "developing",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 54,
+          "cases": [{
+            "id": 3548697,
+            "type": "http",
+            "path": null,
+            "name": "参数异常",
+            "responseId": 0,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "sampleValue": "zh-CN",
+                "required": false,
+                "id": "iv8wpN1E5w",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "required": false,
+                "name": "Authorization",
+                "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "id": "xGa6oA9G70",
+                "relatedName": "Authorization"
+              }, {
+                "required": false,
+                "name": "X-Project-Id",
+                "id": "eydsLnjc5S",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "获取项目详情 Copy Copy Copy Copy Copy Copy",
+        "api": {
+          "id": "3490324",
+          "method": "post",
+          "path": "http://186.137.181.104:30780/api/v1/api-cases",
+          "parameters": {
+            "query": [{
+              "name": "locale",
+              "required": false,
+              "description": "",
+              "id": "0q76VbV8mp",
+              "example": "zh-CN",
+              "type": "string"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "Authorization",
+              "id": "Iv4vE81h3p",
+              "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "X-Project-Id",
+              "id": "3cnr7S799q"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "105305",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {}
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "companyName": {
+                        "type": "string"
+                      }
+                    },
+                    "x-apifox-orders": ["companyName"]
+                  }
+                },
+                "userId": {
+                  "type": "string"
+                }
+              },
+              "required": ["data", "userId"],
+              "x-apifox-orders": ["data", "userId"]
+            },
+            "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "developing",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 66,
+          "cases": [{
+            "id": 3548699,
+            "type": "http",
+            "path": null,
+            "name": "参数异常",
+            "responseId": 0,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "sampleValue": "zh-CN",
+                "required": false,
+                "id": "j42CBBF7kf",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "required": false,
+                "name": "Authorization",
+                "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "id": "QZPwK1cZQe",
+                "relatedName": "Authorization"
+              }, {
+                "required": false,
+                "name": "X-Project-Id",
+                "id": "hRkwDORPYp",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }, {
+            "id": 3689019,
+            "type": "http",
+            "path": null,
+            "name": "成功",
+            "responseId": 105305,
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "value": "zh-CN",
+                "enable": true,
+                "id": "1KBHItstdt",
+                "relatedName": "locale"
+              }],
+              "header": [{
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                "enable": true,
+                "id": "uEWwKvrhHU",
+                "relatedName": "Authorization"
+              }, {
+                "name": "X-Project-Id",
+                "enable": true,
+                "id": "M5oOh0To9P",
+                "relatedName": "X-Project-Id"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "type": "application/json",
+              "data": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {}
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "2333",
+        "parentId": 352855,
+        "serverId": "",
+        "description": "",
+        "preProcessors": [],
+        "postProcessors": [],
+        "auth": {},
+        "identityPattern": {
+          "httpApi": {
+            "type": "inherit",
+            "bodyType": "",
+            "fields": []
+          }
+        },
+        "items": [{
+          "name": "获取项目详情 Copy",
+          "api": {
+            "id": "3490245",
+            "method": "post",
+            "path": "http://186.137.181.104:30780/api/v1/api-cases",
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "required": false,
+                "description": "",
+                "id": "vE7jlJ4tmC",
+                "example": "zh-CN",
+                "type": "string"
+              }],
+              "header": [{
+                "required": false,
+                "description": "",
+                "type": "string",
+                "name": "Authorization",
+                "id": "9ZKIeAsa10",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+              }, {
+                "required": false,
+                "description": "",
+                "type": "string",
+                "name": "X-Project-Id",
+                "id": "rJPussS3oy"
+              }]
+            },
+            "auth": {},
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "responses": [{
+              "id": "105182",
+              "name": "成功",
+              "code": 200,
+              "contentType": "json",
+              "jsonSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }],
+            "responseExamples": [],
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "description": "",
+            "tags": [],
+            "status": "developing",
+            "serverId": "",
+            "operationId": "",
+            "sourceUrl": "",
+            "ordering": 36,
+            "cases": [{
+              "id": 3541010,
+              "type": "http",
+              "path": null,
+              "name": "参数异常",
+              "responseId": 105182,
+              "parameters": {
+                "query": [{
+                  "name": "locale",
+                  "sampleValue": "zh-CN",
+                  "required": false,
+                  "id": "GRM1tTy5mO",
+                  "relatedName": "locale"
+                }],
+                "header": [{
+                  "required": false,
+                  "name": "Authorization",
+                  "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                  "id": "u9f6wg7L8b",
+                  "relatedName": "Authorization"
+                }, {
+                  "required": false,
+                  "name": "X-Project-Id",
+                  "id": "49qqFZEYA3",
+                  "relatedName": "X-Project-Id"
+                }]
+              },
+              "commonParameters": {
+                "query": [],
+                "body": [],
+                "cookie": [],
+                "header": []
+              },
+              "requestBody": {
+                "type": "application/json",
+                "parameters": [],
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "companyName": {
+                            "type": "string"
+                          }
+                        },
+                        "x-apifox-orders": ["companyName"]
+                      }
+                    },
+                    "userId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data", "userId"],
+                  "x-apifox-orders": ["data", "userId"]
+                },
+                "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+              },
+              "preProcessors": [],
+              "postProcessors": [],
+              "auth": {},
+              "advancedSettings": {}
+            }],
+            "mocks": [],
+            "customApiFields": "{}",
+            "advancedSettings": {},
+            "mockScript": {},
+            "codeSamples": []
+          }
+        }, {
+          "name": "获取项目详情 Copy Copy Copy",
+          "api": {
+            "id": "3490321",
+            "method": "post",
+            "path": "http://186.137.181.104:30780/api/v1/api-cases",
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "required": false,
+                "description": "",
+                "id": "04X6wzUdmQ",
+                "example": "zh-CN",
+                "type": "string"
+              }],
+              "header": [{
+                "required": false,
+                "description": "",
+                "type": "string",
+                "name": "Authorization",
+                "id": "SHobiMn3Sg",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+              }, {
+                "required": false,
+                "description": "",
+                "type": "string",
+                "name": "X-Project-Id",
+                "id": "U7u2Kv95SO"
+              }]
+            },
+            "auth": {},
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "responses": [{
+              "id": "105302",
+              "name": "成功",
+              "code": 200,
+              "contentType": "json",
+              "jsonSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }],
+            "responseExamples": [],
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "description": "",
+            "tags": [],
+            "status": "developing",
+            "serverId": "",
+            "operationId": "",
+            "sourceUrl": "",
+            "ordering": 48,
+            "cases": [{
+              "id": 3548696,
+              "type": "http",
+              "path": null,
+              "name": "参数异常",
+              "responseId": 0,
+              "parameters": {
+                "query": [{
+                  "name": "locale",
+                  "sampleValue": "zh-CN",
+                  "required": false,
+                  "id": "5TiEVvo9gI",
+                  "relatedName": "locale"
+                }],
+                "header": [{
+                  "required": false,
+                  "name": "Authorization",
+                  "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                  "id": "4gd2FPdkCx",
+                  "relatedName": "Authorization"
+                }, {
+                  "required": false,
+                  "name": "X-Project-Id",
+                  "id": "R97cfQI9Wn",
+                  "relatedName": "X-Project-Id"
+                }]
+              },
+              "commonParameters": {
+                "query": [],
+                "body": [],
+                "cookie": [],
+                "header": []
+              },
+              "requestBody": {
+                "type": "application/json",
+                "parameters": [],
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "companyName": {
+                            "type": "string"
+                          }
+                        },
+                        "x-apifox-orders": ["companyName"]
+                      }
+                    },
+                    "userId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data", "userId"],
+                  "x-apifox-orders": ["data", "userId"]
+                },
+                "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+              },
+              "preProcessors": [],
+              "postProcessors": [],
+              "auth": {},
+              "advancedSettings": {}
+            }],
+            "mocks": [],
+            "customApiFields": "{}",
+            "advancedSettings": {},
+            "mockScript": {},
+            "codeSamples": []
+          }
+        }, {
+          "name": "获取项目详情 Copy Copy Copy Copy Copy",
+          "api": {
+            "id": "3490323",
+            "method": "post",
+            "path": "http://186.137.181.104:30780/api/v1/api-cases",
+            "parameters": {
+              "query": [{
+                "name": "locale",
+                "required": false,
+                "description": "",
+                "id": "EZuQW3sVxo",
+                "example": "zh-CN",
+                "type": "string"
+              }],
+              "header": [{
+                "required": false,
+                "description": "",
+                "type": "string",
+                "name": "Authorization",
+                "id": "85MgHuqiUP",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE"
+              }, {
+                "required": false,
+                "description": "",
+                "type": "string",
+                "name": "X-Project-Id",
+                "id": "gdTqbG9xFR"
+              }]
+            },
+            "auth": {},
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "cookie": [],
+              "header": []
+            },
+            "responses": [{
+              "id": "105304",
+              "name": "成功",
+              "code": 200,
+              "contentType": "json",
+              "jsonSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }],
+            "responseExamples": [],
+            "requestBody": {
+              "type": "application/json",
+              "parameters": [],
+              "jsonSchema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "companyName": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": ["companyName"]
+                    }
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["data", "userId"],
+                "x-apifox-orders": ["data", "userId"]
+              },
+              "example": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+            },
+            "description": "",
+            "tags": [],
+            "status": "developing",
+            "serverId": "",
+            "operationId": "",
+            "sourceUrl": "",
+            "ordering": 60,
+            "cases": [{
+              "id": 3548698,
+              "type": "http",
+              "path": null,
+              "name": "参数异常",
+              "responseId": 0,
+              "parameters": {
+                "query": [{
+                  "name": "locale",
+                  "sampleValue": "zh-CN",
+                  "required": false,
+                  "id": "JQaclfDI25",
+                  "relatedName": "locale"
+                }],
+                "header": [{
+                  "required": false,
+                  "name": "Authorization",
+                  "sampleValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ1MzM3LCJ0cyI6IjgyMDk1MjJhMzJkODViNTciLCJpYXQiOjE2NjUyODcwMTkxNTl9.evyUdMbsJ7WIVWJ4Rf0-dDAs51Il9ovcLNxboW3ZTJE",
+                  "id": "s5XbouSvYF",
+                  "relatedName": "Authorization"
+                }, {
+                  "required": false,
+                  "name": "X-Project-Id",
+                  "id": "csLmPZxKpj",
+                  "relatedName": "X-Project-Id"
+                }]
+              },
+              "commonParameters": {
+                "query": [],
+                "body": [],
+                "cookie": [],
+                "header": []
+              },
+              "requestBody": {
+                "type": "application/json",
+                "parameters": [],
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "companyName": {
+                            "type": "string"
+                          }
+                        },
+                        "x-apifox-orders": ["companyName"]
+                      }
+                    },
+                    "userId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data", "userId"],
+                  "x-apifox-orders": ["data", "userId"]
+                },
+                "sampleValue": "{\r\n    \"data\": [\r\n        {\r\n            \"companyName\": \"中山文化艺术中心\"\r\n        }\r\n    ],\r\n    \"userId\": \"0369\"\r\n}"
+              },
+              "preProcessors": [],
+              "postProcessors": [],
+              "auth": {},
+              "advancedSettings": {}
+            }],
+            "mocks": [],
+            "customApiFields": "{}",
+            "advancedSettings": {},
+            "mockScript": {},
+            "codeSamples": []
+          }
+        }]
+      }]
+    }]
+  }],
+  "socketCollection": [],
+  "docCollection": [],
+  "schemaCollection": [],
+  "apiTestCaseCollection": [{
+    "name": "默认分组",
+    "children": [],
+    "items": []
+  }],
+  "apiTestSuiteCollection": [],
+  "environments": [],
+  "commonScripts": [],
+  "databaseConnections": [],
+  "globalVariables": [],
+  "commonParameters": null,
+  "projectSetting": {
+    "apiStatuses": ["developing", "testing", "released", "deprecated"],
+    "servers": [{
+      "id": "default",
+      "name": "默认服务"
+    }],
+    "preProcessors": [],
+    "postProcessors": [],
+    "auth": {},
+    "initialDisabledMockIds": [],
+    "mockSettings": {},
+    "gateway": [],
+    "advancedSettings": {},
+    "language": "zh-CN",
+    "id": "326231",
+    "cloudMock": {
+      "security": "free",
+      "enable": false,
+      "tokenKey": "apifoxToken"
+    }
+  }
+}
