@@ -494,7 +494,7 @@ class Apifox2Apipost {
           expect: {
             name: item?.name || '新建响应示例',
             isDefault: -1,
-            code: status,
+            code: "",
             contentType: "json",
             schema: "",
             mock: "",
