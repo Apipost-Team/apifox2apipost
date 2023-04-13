@@ -486,22 +486,50 @@ class Apifox2Apipost {
         request.body.raw = foxApi.requestBody.sampleValue || foxApi.requestBody.example || '';
       }
     }
-    // 响应示例
-    if (Object.prototype.toString.call(foxApi?.responseExamples) === '[object Array]') {
-      for (const item of foxApi.responseExamples) {
+    // 添加响应期望
+    if (Object.prototype.toString.call(foxApi?.responses) === '[object Array]') {
+      let responseExamples = [];
+      if (Object.prototype.toString.call(foxApi?.responseExamples) === '[object Array]') {
+        responseExamples = foxApi.responseExamples;
+      }
+
+
+      for (const item of foxApi.responses) {
+        let id = item?.id;
         let newUUID = uuidV4();
+        let jsonSchema= item?.jsonSchema;
+
+        if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]' && jsonSchema.hasOwnProperty('type') && jsonSchema.hasOwnProperty('properties')) {
+          // x-apifox-orders 2 APIPOST_ORDERS x-apifox-refs 2 APIPOST_REFS  $ref 2 ref  x-apifox-overrides 2 APIPOST_OVERRIDES
+          let jsonSchemaStr = JSON.stringify(jsonSchema);
+          // 替换 x-apifox-orders 为 APIPOST_ORDERS
+          jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-orders\"/g, '\"APIPOST_ORDERS\"');
+          // 替换 x-apifox-refs 为 APIPOST_REFS
+          jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-refs\"/g, '\"APIPOST_REFS\"');
+          // 替换 $ref 为 ref
+          jsonSchemaStr = jsonSchemaStr.replace(/\"\$ref\"/g, '\"ref\"');
+          // 替换 x-apifox-overrides 为 APIPOST_OVERRIDES
+          jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-overrides\"/g, '\"APIPOST_OVERRIDES\"');
+          // 还原为对象
+          jsonSchema = JSON.parse(jsonSchemaStr);
+        }
+
         response[newUUID] = {
           expect: {
             name: item?.name || '新建响应示例',
             isDefault: -1,
-            code: "",
-            contentType: "json",
-            schema: "",
+            code: item?.code || "",
+            contentType: item?.contentType || "json",
+            schema:  jsonSchema,
             mock: "",
             verifyType: "schema",
           },
-          raw: String(item?.data),
+          raw: '',
           parameter: [],
+        }
+        let examples=responseExamples.filter((i:any)=>i?.responseId == item?.id);
+        if(Object.prototype.toString.call(examples) === '[object Array]' && examples.length > 0){
+          response[newUUID].raw =  String(examples[0]?.data)
         }
       }
     }

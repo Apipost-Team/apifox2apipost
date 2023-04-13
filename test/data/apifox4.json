@@ -1,0 +1,1235 @@
+{
+	"apifoxProject": "1.0.0",
+	"$schema": {
+		"app": "apifox",
+		"type": "project",
+		"version": "1.2.0"
+	},
+	"info": {
+		"name": "个人空间",
+		"description": "",
+		"mockRule": {
+			"rules": [],
+			"enableSystemRule": true
+		}
+	},
+	"responseCollection": [{
+		"jsonSchema": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer"
+				},
+				"message": {
+					"type": "string",
+					"mock": {
+						"mock": "Not found"
+					}
+				}
+			},
+			"required": ["code", "message"],
+			"x-apifox-orders": ["code", "message"]
+		},
+		"defaultEnable": false,
+		"name": "记录不存在",
+		"code": 404,
+		"contentType": "json",
+		"id": "190154308"
+	}, {
+		"jsonSchema": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"mock": {
+						"mock": "400"
+					}
+				},
+				"message": {
+					"type": "string",
+					"mock": {
+						"mock": "Invalid input"
+					}
+				}
+			},
+			"required": ["code", "message"],
+			"x-apifox-orders": ["code", "message"]
+		},
+		"defaultEnable": false,
+		"name": "参数不正确",
+		"code": 400,
+		"contentType": "json",
+		"id": "190154309"
+	}],
+	"apiCollection": [{
+		"name": "根目录",
+		"parentId": 0,
+		"serverId": "",
+		"description": "",
+		"preProcessors": [{
+			"id": "inheritProcessors",
+			"type": "inheritProcessors",
+			"data": {}
+		}],
+		"postProcessors": [{
+			"id": "inheritProcessors",
+			"type": "inheritProcessors",
+			"data": {}
+		}],
+		"inheritPostProcessors": {},
+		"inheritPreProcessors": {},
+		"auth": {},
+		"identityPattern": {
+			"httpApi": {
+				"type": "methodAndPath",
+				"bodyType": "",
+				"fields": []
+			}
+		},
+		"items": [{
+			"name": "示例项目",
+			"parentId": 0,
+			"serverId": "",
+			"description": "",
+			"preProcessors": [{
+				"id": "inheritProcessors",
+				"type": "inheritProcessors",
+				"data": {}
+			}],
+			"postProcessors": [{
+				"id": "inheritProcessors",
+				"type": "inheritProcessors",
+				"data": {}
+			}],
+			"inheritPostProcessors": {},
+			"inheritPreProcessors": {},
+			"auth": {},
+			"identityPattern": {
+				"httpApi": {
+					"type": "inherit",
+					"bodyType": "",
+					"fields": []
+				}
+			},
+			"items": [{
+				"name": "查询宠物详情",
+				"api": {
+					"id": "75115725",
+					"method": "get",
+					"path": "/pet/{petId}",
+					"parameters": {
+						"path": [{
+							"name": "petId",
+							"description": "宠物 ID",
+							"required": true,
+							"id": "petId#0",
+							"example": "1",
+							"type": "string",
+							"enable": true
+						}]
+					},
+					"auth": {},
+					"commonParameters": {
+						"query": [],
+						"body": [],
+						"cookie": [],
+						"header": []
+					},
+					"responses": [{
+						"id": "190154311",
+						"name": "成功",
+						"code": 200,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 0,
+									"description": "状态码"
+								},
+								"data": {
+									"$ref": "#/definitions/41302761",
+									"description": "宠物信息"
+								}
+							},
+							"required": ["code", "data"],
+							"x-apifox-orders": ["code", "data", "01GXXB4YK7EG1Y8J6CV6RE5Y2F"],
+							"x-apifox-refs": {
+								"01GXXB4YK7EG1Y8J6CV6RE5Y2F": {
+									"$ref": "#/definitions/41302761"
+								}
+							}
+						}
+					}, {
+						"id": "190217339",
+						"name": "12321321",
+						"code": 201,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {}
+						}
+					}],
+					"responseExamples": [{
+						"name": "成功示例",
+						"data": "{\n    \"code\": 0,\n    \"data\": {\n        \"name\": \"Hello Kity\",\n        \"photoUrls\": [\n            \"http://dummyimage.com/400x400\"\n        ],\n        \"id\": 3,\n        \"category\": {\n            \"id\": 71,\n            \"name\": \"Cat\"\n        },\n        \"tags\": [\n            {\n                \"id\": 22,\n                \"name\": \"Cat\"\n            }\n        ],\n        \"status\": \"sold\"\n    }\n}",
+						"responseId": 190154311,
+						"ordering": 1
+					}],
+					"requestBody": {
+						"type": "application/json",
+						"parameters": [],
+						"jsonSchema": {
+							"type": "object",
+							"properties": {
+								"01GXX10R0HH7192EKQRNSSPY43": {
+									"x-tmp-pending-properties": true
+								}
+							},
+							"x-apifox-orders": ["01GXX10R0HH7192EKQRNSSPY43"],
+							"required": ["01GXX10R0HH7192EKQRNSSPY43"]
+						}
+					},
+					"description": "",
+					"tags": ["宠物"],
+					"status": "released",
+					"serverId": "",
+					"operationId": "",
+					"sourceUrl": "",
+					"ordering": 0,
+					"cases": [{
+						"id": 81220102,
+						"type": "http",
+						"path": null,
+						"name": "在售宠物",
+						"responseId": 190154311,
+						"parameters": {
+							"path": [{
+								"id": "petId#0",
+								"relatedId": "petId#0",
+								"relatedName": "petId",
+								"name": "petId",
+								"value": "1",
+								"enable": true
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}, {
+						"id": 81220103,
+						"type": "http",
+						"path": null,
+						"name": "已售出宠物",
+						"responseId": 190154311,
+						"parameters": {
+							"path": [{
+								"id": "petId#0",
+								"relatedId": "petId#0",
+								"relatedName": "petId",
+								"name": "petId",
+								"value": "2",
+								"enable": true
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}, {
+						"id": 81220104,
+						"type": "http",
+						"path": null,
+						"name": "ID格式不正确",
+						"responseId": 190154311,
+						"parameters": {
+							"path": [{
+								"id": "petId#0",
+								"relatedId": "petId#0",
+								"relatedName": "petId",
+								"name": "petId",
+								"value": "DDD",
+								"enable": true
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}, {
+						"id": 81220106,
+						"type": "http",
+						"path": null,
+						"name": "记录不存在",
+						"responseId": 190154311,
+						"parameters": {
+							"path": [{
+								"id": "petId#0",
+								"relatedId": "petId#0",
+								"relatedName": "petId",
+								"name": "petId",
+								"value": "3",
+								"enable": true
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}],
+					"mocks": [{
+						"name": "在售宠物（成功）",
+						"conditions": [{
+							"location": "path",
+							"name": "petId",
+							"value": "1"
+						}],
+						"response": {
+							"bodyType": "json",
+							"bodyData": "{\n\t\"code\": 0,\n\t\"data\": {\n\t\t\"id\": 1,\n\t\t\"name\": \"@cword(3)\",\n\t\t\"photoUrls\": [\n\t\t\t\"@image(200x200)\"\n\t\t],\n\t\t\"category\": {\n\t\t\t\"id\": \"@natural\",\n\t\t\t\"name\": \"Cat\"\n\t\t},\n\t\t\"tags\": [\n\t\t\t{\n\t\t\t\t\"id\": \"@natural\",\n\t\t\t\t\"name\": \"cat\"\n\t\t\t}\n\t\t],\n\t\t\"status\": \"available\"\n\t}\n}",
+							"code": 200,
+							"delay": 0
+						}
+					}, {
+						"name": "已售出宠物",
+						"conditions": [{
+							"location": "path",
+							"name": "petId",
+							"value": "3"
+						}],
+						"response": {
+							"bodyType": "json",
+							"bodyData": "{\n\t\"code\": 0,\n\t\"data\": {\n\t\t\"id\": \"1\",\n\t\t\"name\": \"@cword(3)\",\n\t\t\"photoUrls\": [\n\t\t\t\"@image(200x200)\"\n\t\t],\n\t\t\"category\": {\n\t\t\t\"id\": \"@natural\",\n\t\t\t\"name\": \"Dog\"\n\t\t},\n\t\t\"tags\": [\n\t\t\t{\n\t\t\t\t\"id\": \"@natural\",\n\t\t\t\t\"name\": \"dog\"\n\t\t\t}\n\t\t],\n\t\t\"status\": \"sold\"\n\t}\n}",
+							"code": 200,
+							"delay": 0
+						}
+					}, {
+						"name": "记录不存在",
+						"conditions": [{
+							"location": "path",
+							"name": "petId",
+							"value": "4"
+						}],
+						"response": {
+							"bodyType": "json",
+							"bodyData": "{\n\t\"code\": 404,\n\t\"message\": \"Not found\"\n}",
+							"code": 404,
+							"delay": 0
+						}
+					}, {
+						"name": "在售宠物",
+						"conditions": [{
+							"location": "path",
+							"name": "petId",
+							"value": "2"
+						}],
+						"response": {
+							"bodyType": "json",
+							"bodyData": "{\n\t\"code\": 0,\n\t\"data\": {\n\t\t\"id\": \"1\",\n\t\t\"name\": \"@cword(3)\",\n\t\t\"photoUrls\": [\n\t\t\t\"@image(200x200)\"\n\t\t],\n\t\t\"category\": {\n\t\t\t\"id\": \"@natural\",\n\t\t\t\"name\": \"Cat\"\n\t\t},\n\t\t\"tags\": [\n\t\t\t{\n\t\t\t\t\"id\": \"@natural\",\n\t\t\t\t\"name\": \"cat\"\n\t\t\t}\n\t\t],\n\t\t\"status\": \"available\"\n\t}\n}",
+							"code": 200,
+							"delay": 0
+						}
+					}, {
+						"name": "ID格式不正确",
+						"conditions": [{
+							"location": "path",
+							"name": "petId",
+							"value": "DDD"
+						}],
+						"response": {
+							"bodyType": "json",
+							"bodyData": "{\n\t\"code\": 400,\n\t\"message\": \"Invalid input\"\n}",
+							"code": 400,
+							"delay": 0
+						}
+					}],
+					"customApiFields": "{}",
+					"advancedSettings": {
+						"isDefaultUrlEncoding": 1
+					},
+					"mockScript": {},
+					"codeSamples": [],
+					"preProcessors": [],
+					"postProcessors": [{
+						"type": "assertion",
+						"data": {
+							"name": "状态为 available",
+							"subject": "responseJson",
+							"comparison": "equal",
+							"value": "available",
+							"path": "$.data.status",
+							"multipleValue": [],
+							"extractSettings": {
+								"expression": "$.data.status",
+								"continueExtractorSettings": {
+									"isContinueExtractValue": false,
+									"JsonArrayValueIndexValue": ""
+								}
+							}
+						},
+						"defaultEnable": false,
+						"enable": true,
+						"id": "X2ZEQ7HdkdUwCdthCaH17vGpR1nSPX6K"
+					}],
+					"inheritPostProcessors": {},
+					"inheritPreProcessors": {}
+				}
+			}, {
+				"name": "新建宠物信息",
+				"api": {
+					"id": "75115728",
+					"method": "post",
+					"path": "/pet",
+					"parameters": {},
+					"auth": {},
+					"commonParameters": {},
+					"responses": [{
+						"id": "190154314",
+						"name": "成功",
+						"code": 201,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 0
+								},
+								"data": {
+									"$ref": "#/definitions/41302761"
+								}
+							},
+							"required": ["code", "data"],
+							"x-apifox-orders": ["code", "data"]
+						}
+					}],
+					"responseExamples": [{
+						"name": "成功示例",
+						"data": "{\n    \"code\": 0,\n    \"data\": {\n        \"name\": \"Hello Kity\",\n        \"photoUrls\": [\n            \"http://dummyimage.com/400x400\"\n        ],\n        \"id\": 3,\n        \"category\": {\n            \"id\": 71,\n            \"name\": \"Cat\"\n        },\n        \"tags\": [\n            {\n                \"id\": 22,\n                \"name\": \"Cat\"\n            }\n        ],\n        \"status\": \"sold\"\n    }\n}",
+						"responseId": 190154314,
+						"ordering": 1
+					}],
+					"requestBody": {
+						"type": "application/x-www-form-urlencoded",
+						"parameters": [{
+							"name": "name",
+							"required": true,
+							"description": "宠物名",
+							"id": "rEM75RVSBJ",
+							"example": "Hello Kitty",
+							"type": "string"
+						}, {
+							"name": "status",
+							"required": true,
+							"description": "宠物销售状态",
+							"id": "hbgczQYWop",
+							"example": "sold",
+							"type": "string"
+						}]
+					},
+					"description": "",
+					"tags": ["宠物"],
+					"status": "released",
+					"serverId": "",
+					"operationId": "",
+					"sourceUrl": "",
+					"ordering": 6,
+					"cases": [{
+						"id": 81220107,
+						"type": "http",
+						"path": null,
+						"name": "成功",
+						"responseId": 190154314,
+						"parameters": {},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [{
+								"name": "name",
+								"value": "Hello Kitty",
+								"enable": true,
+								"id": "5wngfB7FV4",
+								"relatedName": "name"
+							}, {
+								"name": "status",
+								"value": "sold",
+								"enable": true,
+								"id": "zVa8oj08CY",
+								"relatedName": "status"
+							}],
+							"type": "application/x-www-form-urlencoded",
+							"data": ""
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}],
+					"mocks": [],
+					"customApiFields": "{}",
+					"advancedSettings": {},
+					"mockScript": {},
+					"codeSamples": [],
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPostProcessors": {},
+					"inheritPreProcessors": {}
+				}
+			}, {
+				"name": "修改宠物信息",
+				"api": {
+					"id": "75115726",
+					"method": "put",
+					"path": "/pet",
+					"parameters": {},
+					"auth": {},
+					"commonParameters": {},
+					"responses": [{
+						"id": "190154313",
+						"name": "验证错误",
+						"code": 405,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {},
+							"x-apifox-orders": []
+						}
+					}, {
+						"id": "190154316",
+						"name": "成功",
+						"code": 200,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "integer"
+								},
+								"data": {
+									"$ref": "#/definitions/41302761"
+								}
+							},
+							"required": ["code", "data"],
+							"x-apifox-orders": ["code", "data"]
+						}
+					}, {
+						"id": "190154317",
+						"name": "记录不存在",
+						"code": 404,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {},
+							"x-apifox-orders": []
+						}
+					}],
+					"responseExamples": [{
+						"name": "成功示例",
+						"data": "{\n    \"code\": 0,\n    \"data\": {\n        \"name\": \"Hello Kity\",\n        \"photoUrls\": [\n            \"http://dummyimage.com/400x400\"\n        ],\n        \"id\": 3,\n        \"category\": {\n            \"id\": 71,\n            \"name\": \"Cat\"\n        },\n        \"tags\": [\n            {\n                \"id\": 22,\n                \"name\": \"Cat\"\n            }\n        ],\n        \"status\": \"sold\"\n    }\n}",
+						"responseId": 190154316,
+						"ordering": 1
+					}],
+					"requestBody": {
+						"type": "application/json",
+						"parameters": []
+					},
+					"description": "",
+					"tags": ["宠物"],
+					"status": "released",
+					"serverId": "",
+					"operationId": "",
+					"sourceUrl": "",
+					"ordering": 12,
+					"cases": [{
+						"id": 81220109,
+						"type": "http",
+						"path": null,
+						"name": "成功",
+						"responseId": 190154313,
+						"parameters": {},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "application/json",
+							"data": "{\n\"name\":\"test\"\n}"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}, {
+						"id": 81220110,
+						"type": "http",
+						"path": null,
+						"name": "参数有误",
+						"responseId": 190154313,
+						"parameters": {},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "application/json"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}],
+					"mocks": [],
+					"customApiFields": "{}",
+					"advancedSettings": {},
+					"mockScript": {},
+					"codeSamples": [],
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPostProcessors": {},
+					"inheritPreProcessors": {}
+				}
+			}, {
+				"name": "删除宠物信息",
+				"api": {
+					"id": "75115724",
+					"method": "delete",
+					"path": "/pet/{petId}",
+					"parameters": {
+						"header": [{
+							"name": "api_key",
+							"id": "1L4djFll9Y",
+							"type": "string"
+						}],
+						"path": [{
+							"name": "petId",
+							"description": "Pet id to delete",
+							"required": true,
+							"value": 1,
+							"id": "petId#0"
+						}]
+					},
+					"auth": {},
+					"commonParameters": {},
+					"responses": [{
+						"id": "190154310",
+						"name": "成功",
+						"code": 200,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 0
+								}
+							},
+							"required": ["code"],
+							"x-apifox-orders": ["code"]
+						}
+					}],
+					"responseExamples": [{
+						"name": "成功示例",
+						"data": "{\n    \"code\": 0\n}",
+						"responseId": 190154310,
+						"ordering": 1
+					}],
+					"requestBody": {
+						"type": "none",
+						"parameters": []
+					},
+					"description": "",
+					"tags": ["宠物"],
+					"status": "released",
+					"serverId": "",
+					"operationId": "",
+					"sourceUrl": "",
+					"ordering": 18,
+					"cases": [{
+						"id": 81220101,
+						"type": "http",
+						"path": null,
+						"name": "成功",
+						"responseId": 190154310,
+						"parameters": {
+							"header": [{
+								"name": "api_key",
+								"enable": true,
+								"id": "udx5AlKYq4",
+								"relatedName": "api_key"
+							}],
+							"path": [{
+								"id": "petId#0",
+								"relatedId": "petId#0",
+								"relatedName": "petId",
+								"name": "petId",
+								"value": "1",
+								"enable": true
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}],
+					"mocks": [],
+					"customApiFields": "{}",
+					"advancedSettings": {},
+					"mockScript": {},
+					"codeSamples": [],
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPostProcessors": {},
+					"inheritPreProcessors": {}
+				}
+			}, {
+				"name": "根据状态查找宠物列表",
+				"api": {
+					"id": "75115727",
+					"method": "get",
+					"path": "/pet/findByStatus",
+					"parameters": {
+						"query": [{
+							"name": "status",
+							"description": "Status values that need to be considered for filter",
+							"required": true,
+							"id": "TQxWJ8HZBZ",
+							"type": "string",
+							"enable": true
+						}]
+					},
+					"auth": {},
+					"commonParameters": {
+						"query": [],
+						"body": [],
+						"cookie": [],
+						"header": []
+					},
+					"responses": [{
+						"id": "190154312",
+						"name": "成功",
+						"code": 200,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/41302761"
+							}
+						}
+					}, {
+						"id": "190154315",
+						"name": "错误的 status 值",
+						"code": 400,
+						"contentType": "json",
+						"jsonSchema": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "integer",
+									"mock": {
+										"mock": "400"
+									}
+								}
+							},
+							"required": ["code"],
+							"x-apifox-orders": ["code"]
+						}
+					}],
+					"responseExamples": [{
+						"name": "成功示例",
+						"data": "{\n    \"code\": 0,\n    \"data\": [\n        {\n            \"name\": \"Hello Kity\",\n            \"photoUrls\": [\n                \"http://dummyimage.com/400x400\"\n            ],\n            \"id\": 3,\n            \"category\": {\n                \"id\": 71,\n                \"name\": \"Cat\"\n            },\n            \"tags\": [\n                {\n                    \"id\": 22,\n                    \"name\": \"Cat\"\n                }\n            ],\n            \"status\": \"sold\"\n        },\n        {\n            \"name\": \"White Dog\",\n            \"photoUrls\": [\n                \"http://dummyimage.com/400x400\"\n            ],\n            \"id\": 3,\n            \"category\": {\n                \"id\": 71,\n                \"name\": \"Dog\"\n            },\n            \"tags\": [\n                {\n                    \"id\": 22,\n                    \"name\": \"Dog\"\n                }\n            ],\n            \"status\": \"sold\"\n        }\n    ]\n}",
+						"responseId": 190154312,
+						"ordering": 1
+					}],
+					"requestBody": {
+						"type": "application/json",
+						"parameters": [],
+						"jsonSchema": {
+							"type": "object",
+							"properties": {}
+						},
+						"example": "{\n    test:123213\n}"
+					},
+					"description": "",
+					"tags": ["宠物"],
+					"status": "released",
+					"serverId": "",
+					"operationId": "",
+					"sourceUrl": "",
+					"ordering": 24,
+					"cases": [{
+						"id": 81220105,
+						"type": "http",
+						"path": null,
+						"name": "出售中的宠物列表",
+						"responseId": 190154312,
+						"parameters": {
+							"query": [{
+								"name": "status",
+								"value": "available",
+								"enable": true,
+								"id": "Wnhp6bGIOp",
+								"relatedName": "status"
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}, {
+						"id": 81220108,
+						"type": "http",
+						"path": null,
+						"name": "已售出宠物列表",
+						"responseId": 190154312,
+						"parameters": {
+							"query": [{
+								"name": "status",
+								"value": "sold",
+								"enable": true,
+								"id": "LinwiNPTf9",
+								"relatedName": "status"
+							}]
+						},
+						"commonParameters": {},
+						"requestBody": {
+							"parameters": [],
+							"type": "none"
+						},
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {},
+						"auth": {},
+						"advancedSettings": {}
+					}],
+					"mocks": [],
+					"customApiFields": "{}",
+					"advancedSettings": {},
+					"mockScript": {},
+					"codeSamples": [],
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPostProcessors": {},
+					"inheritPreProcessors": {}
+				}
+			}]
+		}]
+	}],
+	"socketCollection": [],
+	"docCollection": [],
+	"schemaCollection": [{
+		"name": "根目录",
+		"items": [{
+			"name": "示例数据模型",
+			"items": [{
+				"name": "Pet",
+				"displayName": "",
+				"id": "#/definitions/41302761",
+				"description": "",
+				"schema": {
+					"jsonSchema": {
+						"required": ["name", "photoUrls", "id", "category", "tags", "status"],
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer",
+								"format": "int64",
+								"minimum": 1,
+								"maximum": 5000,
+								"mock": {
+									"mock": "@natural"
+								},
+								"description": "宠物ID编号"
+							},
+							"category": {
+								"$ref": "#/definitions/41302760",
+								"description": "分组"
+							},
+							"name": {
+								"type": "string",
+								"description": "名称",
+								"mock": {
+									"mock": "@cword(3)"
+								},
+								"examples": ["doggie"]
+							},
+							"photoUrls": {
+								"type": "array",
+								"items": {
+									"type": "string",
+									"mock": {
+										"mock": "@image"
+									}
+								},
+								"description": "照片URL"
+							},
+							"tags": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/41302762"
+								},
+								"description": "标签"
+							},
+							"status": {
+								"type": "string",
+								"description": "宠物销售状态",
+								"enum": ["available", "pending", "sold"]
+							}
+						},
+						"x-apifox-orders": ["id", "category", "name", "photoUrls", "tags", "status"]
+					}
+				}
+			}, {
+				"name": "Category",
+				"displayName": "",
+				"id": "#/definitions/41302760",
+				"description": "",
+				"schema": {
+					"jsonSchema": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer",
+								"format": "int64",
+								"minimum": 1,
+								"description": "分组ID编号"
+							},
+							"name": {
+								"type": "string",
+								"mock": {
+									"mock": "@cword(2)"
+								},
+								"description": "分组名称"
+							}
+						},
+						"xml": {
+							"name": "Category"
+						},
+						"x-apifox-orders": ["id", "name"]
+					}
+				}
+			}, {
+				"name": "Tag",
+				"displayName": "",
+				"id": "#/definitions/41302762",
+				"description": "",
+				"schema": {
+					"jsonSchema": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer",
+								"format": "int64",
+								"minimum": 1,
+								"description": "标签ID编号"
+							},
+							"name": {
+								"type": "string",
+								"mock": {
+									"mock": "@cword(4)"
+								},
+								"description": "标签名称"
+							}
+						},
+						"xml": {
+							"name": "Tag"
+						},
+						"x-apifox-orders": ["id", "name"]
+					}
+				}
+			}]
+		}]
+	}],
+	"webSocketCollection": [],
+	"apiTestCaseCollection": [{
+		"name": "默认目录",
+		"children": [],
+		"items": []
+	}, {
+		"name": "宠物店",
+		"children": [],
+		"items": [{
+			"steps": [{
+				"type": "http",
+				"bind": false,
+				"httpApiCase": {
+					"parameters": {},
+					"commonParameters": {},
+					"auth": {},
+					"requestBody": {
+						"parameters": [{
+							"name": "name",
+							"value": "Hello Kitty",
+							"enable": true,
+							"id": "6b8ArDWoyr",
+							"relatedName": "name"
+						}, {
+							"name": "status",
+							"value": "sold",
+							"enable": true,
+							"id": "wgCRkuL906",
+							"relatedName": "status"
+						}],
+						"type": "application/x-www-form-urlencoded",
+						"data": ""
+					},
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPreProcessors": {},
+					"inheritPostProcessors": {},
+					"advancedSettings": {},
+					"options": {},
+					"id": 81220116,
+					"name": "新建在售宠物",
+					"type": "http",
+					"responseId": 0,
+					"path": null,
+					"apiId": 75115728
+				}
+			}, {
+				"type": "http",
+				"bind": false,
+				"httpApiCase": {
+					"parameters": {
+						"path": [{
+							"id": "petId#0",
+							"relatedId": "petId#0",
+							"relatedName": "petId",
+							"name": "petId",
+							"value": "{{petId}}",
+							"enable": true
+						}]
+					},
+					"commonParameters": {},
+					"auth": {},
+					"requestBody": {
+						"parameters": [],
+						"type": "none"
+					},
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPreProcessors": {},
+					"inheritPostProcessors": {},
+					"advancedSettings": {},
+					"options": {},
+					"id": 81220115,
+					"name": "查询刚刚建的宠物",
+					"type": "http",
+					"responseId": 0,
+					"path": null,
+					"apiId": 75115725
+				}
+			}, {
+				"type": "http",
+				"bind": false,
+				"httpApiCase": {
+					"parameters": {},
+					"commonParameters": {},
+					"auth": {},
+					"requestBody": {
+						"parameters": [],
+						"type": "application/json",
+						"data": "{\n\"name\":\"test\"\n}"
+					},
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPreProcessors": {},
+					"inheritPostProcessors": {},
+					"advancedSettings": {},
+					"options": {},
+					"id": 81220114,
+					"name": "修改宠物状态为 sold",
+					"type": "http",
+					"responseId": 0,
+					"path": null,
+					"apiId": 75115726
+				}
+			}, {
+				"type": "http",
+				"bind": false,
+				"httpApiCase": {
+					"parameters": {
+						"path": [{
+							"id": "petId#0",
+							"relatedId": "petId#0",
+							"relatedName": "petId",
+							"name": "petId",
+							"value": "2",
+							"enable": true
+						}]
+					},
+					"commonParameters": {},
+					"auth": {},
+					"requestBody": {
+						"parameters": [],
+						"type": "none"
+					},
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPreProcessors": {},
+					"inheritPostProcessors": {},
+					"advancedSettings": {},
+					"options": {},
+					"id": 81220113,
+					"name": "查询宠物状态是否修改成功",
+					"type": "http",
+					"responseId": 0,
+					"path": null,
+					"apiId": 75115725
+				}
+			}, {
+				"type": "http",
+				"bind": false,
+				"httpApiCase": {
+					"parameters": {
+						"header": [{
+							"name": "api_key",
+							"enable": true,
+							"id": "2iSkv5Iwy2",
+							"relatedName": "api_key"
+						}],
+						"path": [{
+							"id": "petId#0",
+							"relatedId": "petId#0",
+							"relatedName": "petId",
+							"name": "petId",
+							"value": "",
+							"enable": true
+						}]
+					},
+					"commonParameters": {},
+					"auth": {},
+					"requestBody": {
+						"parameters": [],
+						"type": "none"
+					},
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPreProcessors": {},
+					"inheritPostProcessors": {},
+					"advancedSettings": {},
+					"options": {},
+					"id": 81220112,
+					"name": "删除该宠物",
+					"type": "http",
+					"responseId": 0,
+					"path": null,
+					"apiId": 75115724
+				}
+			}, {
+				"type": "http",
+				"bind": false,
+				"httpApiCase": {
+					"parameters": {
+						"path": [{
+							"id": "petId#0",
+							"relatedId": "petId#0",
+							"relatedName": "petId",
+							"name": "petId",
+							"value": "1645646",
+							"enable": true
+						}]
+					},
+					"commonParameters": {},
+					"auth": {},
+					"requestBody": {
+						"parameters": [],
+						"type": "none"
+					},
+					"preProcessors": [],
+					"postProcessors": [],
+					"inheritPreProcessors": {},
+					"inheritPostProcessors": {},
+					"advancedSettings": {},
+					"options": {},
+					"id": 81220111,
+					"name": "检查删除是否成功",
+					"type": "http",
+					"responseId": 190154308,
+					"path": null,
+					"apiId": 75115725
+				}
+			}],
+			"id": 2209186,
+			"name": "测试宠物新建/修改/删除流程",
+			"description": "",
+			"ordering": 0
+		}]
+	}],
+	"apiTestSuiteCollection": [],
+	"testCaseReferences": [],
+	"environments": [],
+	"commonScripts": [],
+	"databaseConnections": [],
+	"globalVariables": [],
+	"commonParameters": null,
+	"projectSetting": {
+		"apiStatuses": ["developing", "testing", "released", "deprecated"],
+		"servers": [{
+			"id": "default",
+			"name": "默认服务"
+		}],
+		"preProcessors": [],
+		"postProcessors": [],
+		"auth": {},
+		"initialDisabledMockIds": [],
+		"mockSettings": {},
+		"gateway": [],
+		"advancedSettings": {},
+		"language": "zh-CN",
+		"id": "2056956",
+		"cloudMock": {
+			"security": "free",
+			"enable": false,
+			"tokenKey": "apifoxToken"
+		}
+	}
+}
