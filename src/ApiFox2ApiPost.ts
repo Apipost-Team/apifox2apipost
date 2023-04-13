@@ -1,3 +1,5 @@
+import { v4 as uuidV4 } from 'uuid';
+
 const STATUS_NAME: any = {
   released: '已发布',
   testing: '测试中',
@@ -310,7 +312,7 @@ class Apifox2Apipost {
         }
       } else if (bodyType == 'none') {
       } else {
-        request.body.raw = caseItem.requestBody.sampleValue || caseItem.requestBody.example || '';
+        request.body.raw = caseItem?.requestBody?.data || caseItem.requestBody.sampleValue || caseItem.requestBody.example || '';
       }
     }
     // 前置执行脚本
@@ -349,9 +351,10 @@ class Apifox2Apipost {
           test: '',
         }
       },
+      response: {},
       mark: status || 'developing',
     }
-    const { request } = api;
+    const { request, response } = api;
     if (Object.prototype.toString.call(foxApi?.parameters) === '[object Object]') {
       for (const key in foxApi.parameters) {
         let item = foxApi.parameters[key];
@@ -483,6 +486,26 @@ class Apifox2Apipost {
         request.body.raw = foxApi.requestBody.sampleValue || foxApi.requestBody.example || '';
       }
     }
+    // 响应示例
+    if (Object.prototype.toString.call(foxApi?.responseExamples) === '[object Array]') {
+      for (const item of foxApi.responseExamples) {
+        let newUUID = uuidV4();
+        response[newUUID] = {
+          expect: {
+            name: item?.name || '新建响应示例',
+            isDefault: -1,
+            code: status,
+            contentType: "json",
+            schema: "",
+            mock: "",
+            verifyType: "schema",
+          },
+          raw: String(item?.data),
+          parameter: [],
+        }
+      }
+    }
+
     // 前置执行脚本
     if (foxApi.hasOwnProperty('preProcessors') && foxApi.preProcessors instanceof Array) {
       request.event.pre_script = this.handlePreProcessors(foxApi.preProcessors);
@@ -654,8 +677,8 @@ class Apifox2Apipost {
     const { name, displayName, description, schema, id } = item;
     var model: any = {
       model_id: id || '',
-      name: name || '新建模型',
-      displayName: displayName || '新建模型',
+      name: name || '新建数据模型',
+      displayName: displayName || '',
       model_type: 'model',
       description: description || '',
       schema: {},
