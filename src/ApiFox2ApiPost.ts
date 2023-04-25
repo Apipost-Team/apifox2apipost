@@ -12,6 +12,69 @@ const STATUS_NAME: any = {
   designing: '设计中',
 }
 
+const OPERATOR_FOX: any = {
+  equal: {
+    name: '等于',
+    code: '.to.eql'
+  },
+  notEqual: {
+    name: '不等于',
+    code: '.to.not.eql'
+  },
+  exists: {
+    name: '存在',
+    code: '.to.have.deep.property'
+  },
+  notExists: {
+    name: '不存在',
+    code: '.to.not.have.deep.property'
+  },
+  match: {
+    name: '正则匹配',
+    code: '.to.match'
+  },
+  include: {
+    name: '包含',
+    code: '.to.include'
+  },
+  notInclude: {
+    name: '不包含',
+    code: '.to.not.include'
+  },
+  isOneOf: {
+    name: '属于集合',
+    code: '.to.be.oneOf'
+  },
+  isNotOneOf: {
+    name: '不属于集合',
+    code: '.to.not.be.oneOf'
+  },
+  isBelow: {
+    name: '小于',
+    code: '.to.be.below'
+  },
+  isAtMost: {
+    name: '小于或等于',
+    code: '.to.be.at.most'
+  },
+  isAbove: {
+    name: '大于',
+    code: '.to.be.above'
+  },
+  isAtLeast: {
+    name: '大于或等于',
+    code: '.to.be.at.least'
+  },
+  isEmpty: {
+    name: '为空',
+    code: '.to.be.empty'
+  },
+  isNotEmpty: {
+    name: '不为空',
+    code: '.to.not.be.empty'
+  },
+}
+
 const BODY_TYPE: any = {
   'application/x-www-form-urlencoded': 'urlencoded',
   'application/xml': 'xml',
@@ -19,7 +82,99 @@ const BODY_TYPE: any = {
   'text/plain': 'plain',
   none: 'none',
 }
+const joinCookieValues = (cookieArray: any) => {
+  const filteredCookieArray = cookieArray.filter((cookie: any) => cookie.name);
+  const cookieStringArray = filteredCookieArray.map((cookie: any) => `${cookie.name}=${cookie?.example}`);
+  return cookieStringArray.join('; ');
+}
+const apifoxSchema2apipostSchema = (schemaObj: any) => {
+  let jsonSchema = {};
+  try {
+    // x-apifox-orders 2 APIPOST_ORDERS x-apifox-refs 2 APIPOST_REFS  $ref 2 ref  x-apifox-overrides 2 APIPOST_OVERRIDES
+    let jsonSchemaStr = JSON.stringify(schemaObj);
+    // 替换 x-apifox-orders 为 APIPOST_ORDERS
+    jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-orders\"/g, '\"APIPOST_ORDERS\"');
+    // 替换 x-apifox-refs 为 APIPOST_REFS
+    jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-refs\"/g, '\"APIPOST_REFS\"');
+    // 替换 $ref 为 ref
+    jsonSchemaStr = jsonSchemaStr.replace(/\"\$ref\"/g, '\"ref\"');
+    // 替换 x-apifox-overrides 为 APIPOST_OVERRIDES
+    jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-overrides\"/g, '\"APIPOST_OVERRIDES\"');
+    // 还原为对象
+    jsonSchema = JSON.parse(jsonSchemaStr);
+  } catch (error) { }
 
+  return jsonSchema;
+}
+const hasOtherProperties = (obj: any, excludedProperty: string) => {
+  const filteredKeys = Object.keys(obj).filter(key => key !== excludedProperty);
+  return filteredKeys.length > 0;
+}
+const isObject = (data: any) => {
+  return Object.prototype.toString.call(data) === '[object Object]';
+}
+const isArray = (data: any) => {
+  return Object.prototype.toString.call(data) === '[object Array]';
+}
+const isString = (data: any) => {
+  return Object.prototype.toString.call(data) === '[object String]';
+}
+const getAssertKey = (subject: string, path: string,comparison:any) => {
+  if (subject == 'responseText') {
+    return 'apt.response.raw.responseText';
+  } else if (subject == 'responseJson') {
+    let safePath = path || '';
+    if (safePath[0] === '$') {
+      safePath = safePath.slice(1);
+    }
+    safePath = '.' + safePath.replace(/^\./, '');
+    if (['exists', 'notExists'].includes(comparison)) {
+      return `apt.response.json`;
+    }
+    return `apt.response.json${safePath}`
+  } else if (subject == 'responseXml') {
+    return '';
+  } else if (subject == 'responseHeader') {
+    return `apt.response.resHeaders?.["${path}"]`;
+  } else if (subject == 'responseCookie') {
+    return `apt.response.cookies?.["${path}"]`;
+  } else if (subject == 'environment') {
+    return `apt.environment.get("${path}")`;
+  } else if (subject == 'globals') {
+    return `apt.globals.get("${path}")`;
+  } else if (subject == 'duration') {
+    return `apt.response.responseTime`;
+  } else {
+    return '';
+  }
+}
+const getValueCode = (comparison: any, assertValue: any, path: any,multipleValue:any) => {
+  if (['isEmpty', 'isNotEmpty'].includes(comparison)) {
+    return '';
+  }
+  if (['exists', 'notExists'].includes(comparison)) {
+    return `(\"${path})\"`;
+  }
+  if(['isOneOf', 'isNotOneOf'].includes(comparison)){
+    return `(${multipleValue})`;
+  }
+  return `(${assertValue})`;
+}
+const createPostManAssert = (data: any) => {
+  const { subject, comparison = '', value = '', name = '', path = '',multipleValue = [] } = data || {};
+  const assertName = `${name || path || subject || ''} ${OPERATOR_FOX[comparison]?.name || '-'} ${value}`;
+  const comparisonCode = OPERATOR_FOX[comparison]?.code || '';
+  const key = getAssertKey(subject, path, comparison);
+  const assertValue = subject === 'responseJson' ? (isString(value) ? `\`${value}\`` : value) : `\`${value}\``;
+  if (!key) {
+    return '';
+  }
+
+  const valueCode = getValueCode(comparison, assertValue, path, multipleValue);
+  return `apt.test("${assertName}", () => {
+    apt.expect(${key})${comparisonCode}${valueCode};
+  });`
+};
 class Apifox2Apipost {
   version: string;
   project: any;
@@ -163,6 +318,21 @@ class Apifox2Apipost {
           }
         }
         this.envs.push(temp_env);
+
+        if (isObject(foxEnv?.baseUrls) && hasOtherProperties(foxEnv.baseUrls, 'default') && isArray(json?.projectSetting?.servers)) {
+          const servers = json?.projectSetting?.servers;
+          Object.keys(foxEnv.baseUrls).forEach(key => {
+            const baseUrl = foxEnv.baseUrls[key];
+            const serverObj = servers.find((ser: any) => ser?.id == key)
+            if (key != 'default' && baseUrl && serverObj && isString(serverObj?.name) && serverObj.name.length > 0) {
+              this.envs.push({
+                name: `${foxEnv?.name || "未命名环境"}-${serverObj.name}`,
+                pre_url: baseUrl || '',
+                list: temp_env?.list || {},
+              })
+            }
+          })
+        }
       }
     }
   }
@@ -210,6 +380,27 @@ class Apifox2Apipost {
               description: p.description || '',
               field_type: "Text"
             });
+          }
+        } else if (key == 'cookie') {
+          // cookie
+          if (Object.prototype.toString.call(item) === '[object Array]' && item.length > 0) {
+            let cookies = joinCookieValues(item);
+            const cookieHeader = request.header.find((item: any) => {
+              return String(item?.key || '').toLowerCase() == 'cookie'
+            })
+            if (cookieHeader == undefined) {
+              request.header.push({
+                is_checked: '1',
+                type: 'Text',
+                key: 'cookie',
+                value: cookies,
+                not_null: '1',
+                description: '',
+                field_type: "Text"
+              })
+            } else {
+              cookieHeader.value = cookieHeader.value + '; ' + cookies
+            }
           }
         }
       }
@@ -313,6 +504,9 @@ class Apifox2Apipost {
       } else if (bodyType == 'none') {
       } else {
         request.body.raw = caseItem?.requestBody?.data || caseItem.requestBody.sampleValue || caseItem.requestBody.example || '';
+        if ((caseItem.requestBody.hasOwnProperty('jsonSchema')) && Object.prototype.toString.call(caseItem?.requestBody?.jsonSchema) === '[object Object]') {
+          request.body.raw_schema = apifoxSchema2apipostSchema(caseItem.requestBody.jsonSchema);
+        }
       }
     }
     // 前置执行脚本
@@ -382,9 +576,31 @@ class Apifox2Apipost {
               field_type: "Text"
             });
           }
+        } else if (key == 'cookie') {
+          // cookie
+          if (Object.prototype.toString.call(item) === '[object Array]' && item.length > 0) {
+            let cookies = joinCookieValues(item);
+            const cookieHeader = request.header.find((item: any) => {
+              return String(item?.key || '').toLowerCase() == 'cookie'
+            })
+            if (cookieHeader == undefined) {
+              request.header.push({
+                is_checked: '1',
+                type: 'Text',
+                key: 'cookie',
+                value: cookies,
+                not_null: '1',
+                description: '',
+                field_type: "Text"
+              })
+            } else {
+              cookieHeader.value = cookieHeader.value + '; ' + cookies
+            }
+          }
         }
       }
     }
+
     if (foxApi.hasOwnProperty('auth')) {
       // 全证
       let apiPostAuth = {
@@ -484,6 +700,9 @@ class Apifox2Apipost {
       } else if (bodyType == 'none') {
       } else {
         request.body.raw = foxApi.requestBody.sampleValue || foxApi.requestBody.example || '';
+        if ((foxApi.requestBody.hasOwnProperty('jsonSchema')) && Object.prototype.toString.call(foxApi?.requestBody?.jsonSchema) === '[object Object]') {
+          request.body.raw_schema = apifoxSchema2apipostSchema(foxApi.requestBody.jsonSchema);
+        }
       }
     }
     // 添加响应期望
@@ -497,21 +716,10 @@ class Apifox2Apipost {
       for (const item of foxApi.responses) {
         let id = item?.id;
         let newUUID = uuidV4();
-        let jsonSchema= item?.jsonSchema;
+        let jsonSchema = item?.jsonSchema;
 
         if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]' && jsonSchema.hasOwnProperty('type') && jsonSchema.hasOwnProperty('properties')) {
-          // x-apifox-orders 2 APIPOST_ORDERS x-apifox-refs 2 APIPOST_REFS  $ref 2 ref  x-apifox-overrides 2 APIPOST_OVERRIDES
-          let jsonSchemaStr = JSON.stringify(jsonSchema);
-          // 替换 x-apifox-orders 为 APIPOST_ORDERS
-          jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-orders\"/g, '\"APIPOST_ORDERS\"');
-          // 替换 x-apifox-refs 为 APIPOST_REFS
-          jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-refs\"/g, '\"APIPOST_REFS\"');
-          // 替换 $ref 为 ref
-          jsonSchemaStr = jsonSchemaStr.replace(/\"\$ref\"/g, '\"ref\"');
-          // 替换 x-apifox-overrides 为 APIPOST_OVERRIDES
-          jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-overrides\"/g, '\"APIPOST_OVERRIDES\"');
-          // 还原为对象
-          jsonSchema = JSON.parse(jsonSchemaStr);
+          jsonSchema = apifoxSchema2apipostSchema(jsonSchema);
         }
 
         response[newUUID] = {
@@ -520,16 +728,16 @@ class Apifox2Apipost {
             isDefault: -1,
             code: item?.code || "",
             contentType: item?.contentType || "json",
-            schema:  jsonSchema,
+            schema: jsonSchema,
             mock: "",
             verifyType: "schema",
           },
           raw: '',
           parameter: [],
         }
-        let examples=responseExamples.filter((i:any)=>i?.responseId == item?.id);
-        if(Object.prototype.toString.call(examples) === '[object Array]' && examples.length > 0){
-          response[newUUID].raw =  String(examples[0]?.data)
+        let examples = responseExamples.filter((i: any) => i?.responseId == item?.id);
+        if (Object.prototype.toString.call(examples) === '[object Array]' && examples.length > 0) {
+          response[newUUID].raw = String(examples[0]?.data)
         }
       }
     }
@@ -565,6 +773,15 @@ class Apifox2Apipost {
         } else if (preProcessor?.type === 'commonScript' && preProcessor?.data instanceof Array && preProcessor.data.length > 0) {
           // 全局公共脚本
           script = script + this.handleCommonScript(preProcessor.data[0]);
+        } else if (preProcessor?.type === 'assertion' && isObject(preProcessor?.data)) {
+          // 断言处理
+          const { data } = preProcessor || {};
+
+          let newScript = createPostManAssert(data);
+
+          if (isString(newScript) && newScript.length > 0) {
+            script = `${script}\n${newScript}`;
+          }
         }
       }
       return script;
@@ -714,18 +931,7 @@ class Apifox2Apipost {
     try {
       let jsonSchema = schema?.jsonSchema;
       if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]' && jsonSchema.hasOwnProperty('type') && jsonSchema.hasOwnProperty('properties')) {
-        // x-apifox-orders 2 APIPOST_ORDERS x-apifox-refs 2 APIPOST_REFS  $ref 2 ref  x-apifox-overrides 2 APIPOST_OVERRIDES
-        let jsonSchemaStr = JSON.stringify(jsonSchema);
-        // 替换 x-apifox-orders 为 APIPOST_ORDERS
-        jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-orders\"/g, '\"APIPOST_ORDERS\"');
-        // 替换 x-apifox-refs 为 APIPOST_REFS
-        jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-refs\"/g, '\"APIPOST_REFS\"');
-        // 替换 $ref 为 ref
-        jsonSchemaStr = jsonSchemaStr.replace(/\"\$ref\"/g, '\"ref\"');
-        // 替换 x-apifox-overrides 为 APIPOST_OVERRIDES
-        jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-overrides\"/g, '\"APIPOST_OVERRIDES\"');
-        // 还原为对象
-        model.schema = JSON.parse(jsonSchemaStr);
+        model.schema = apifoxSchema2apipostSchema(jsonSchema);
       }
     } catch (error) { }
     return model;
