@@ -110,6 +110,7 @@ const apifoxSchema2apipostSchema = (schemaObj: any) => {
           ref: jsonSchema.ref
         },
       };
+      jsonSchema['APIPOST_ORDERS'] = [newIuid]
       jsonSchema['type'] = "object";
       jsonSchema['properties'] = {};
 
