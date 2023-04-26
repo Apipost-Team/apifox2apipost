@@ -1,0 +1,947 @@
+{
+  "apifoxProject": "1.0.0",
+  "$schema": {
+    "app": "apifox",
+    "type": "project",
+    "version": "1.2.0"
+  },
+  "info": {
+    "name": "测试项目1",
+    "description": "",
+    "mockRule": {
+      "rules": [],
+      "enableSystemRule": true
+    }
+  },
+  "responseCollection": [{
+    "jsonSchema": {
+      "type": "object",
+      "properties": {}
+    },
+    "defaultEnable": false,
+    "name": "common-resp",
+    "code": 200,
+    "contentType": "json",
+    "id": "131678"
+  }],
+  "apiCollection": [{
+    "name": "根目录",
+    "parentId": 0,
+    "serverId": "",
+    "description": "",
+    "preProcessors": [],
+    "postProcessors": [],
+    "auth": {},
+    "identityPattern": {
+      "httpApi": {
+        "type": "methodAndPath",
+        "bodyType": "",
+        "fields": []
+      }
+    },
+    "items": [{
+      "name": "无示例值",
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "preProcessors": [],
+      "postProcessors": [],
+      "auth": {},
+      "identityPattern": {
+        "httpApi": {
+          "type": "inherit",
+          "bodyType": ""
+        }
+      },
+      "items": [{
+        "name": "推送1",
+        "api": {
+          "id": "3500093",
+          "method": "post",
+          "path": "/v1/api/testEntry/push",
+          "parameters": {
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "x-token",
+              "id": "hQqJ1DCOF0"
+            }],
+            "query": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "pa1",
+              "id": "z3CbQhxGhC"
+            }, {
+              "required": true,
+              "description": "",
+              "type": "string",
+              "name": "pa2_must",
+              "id": "S4tOxLv2uJ"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "131661",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "$ref": "#/definitions/362214"
+            }
+          }, {
+            "id": "131662",
+            "name": "记录不存在",
+            "code": 404,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "err": {
+                  "type": "string"
+                }
+              },
+              "x-apifox-orders": ["code", "err"],
+              "required": ["code", "err"]
+            }
+          }, {
+            "id": "131663",
+            "name": "禁止访问",
+            "code": 403,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "x-apifox-refs": {
+                "01GYHD4DDS5CA73AH6NDNC7CR7": {
+                  "$ref": "#/definitions/362214",
+                  "x-apifox-overrides": {}
+                }
+              },
+              "properties": {
+                "auth_msg": {
+                  "type": "string"
+                }
+              },
+              "required": ["auth_msg"],
+              "x-apifox-orders": ["01GYHD4DDS5CA73AH6NDNC7CR7", "auth_msg"]
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "$ref": "#/definitions/362215"
+            }
+          },
+          "description": "",
+          "tags": [],
+          "status": "developing",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 10,
+          "cases": [{
+            "id": 4627104,
+            "type": "http",
+            "path": null,
+            "name": "成功",
+            "responseId": 131661,
+            "parameters": {
+              "query": [{
+                "id": "k44QoQHj95",
+                "relatedId": "z3CbQhxGhC",
+                "relatedName": "pa1",
+                "value": "123",
+                "enable": true,
+                "isDelete": false
+              }, {
+                "id": "hcdkSzMj0p",
+                "relatedId": "S4tOxLv2uJ",
+                "relatedName": "pa2_must",
+                "value": "ert",
+                "enable": true,
+                "isDelete": false
+              }],
+              "path": [],
+              "cookie": [],
+              "header": [{
+                "id": "OAxAE8j19R",
+                "relatedId": "hQqJ1DCOF0",
+                "relatedName": "x-token",
+                "value": "fffff",
+                "enable": true,
+                "isDelete": false
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "data": "{\r\n    \"ua\": \"chrome\",\r\n    \"user\": \"用户\",\r\n    \"data\": [\r\n        {\r\n            \"ws1\": \"nisi nostrud\",\r\n            \"ws2\": \"consequat dolore nulla cillum\"\r\n        },\r\n        {\r\n            \"ws1\": \"voluptate commodo labore\",\r\n            \"ws2\": \"est ullamco in veniam\"\r\n        },\r\n        {\r\n            \"ws1\": \"Excepteur dolor dolor sed\",\r\n            \"ws2\": \"tempor\"\r\n        }\r\n    ]\r\n}",
+              "generateMode": "normal"
+            },
+            "preProcessors": [{
+              "type": "customScript",
+              "data": "console.log(\"prefix\");",
+              "disabled": false,
+              "executionTiming": "presend"
+            }, {
+              "type": "commonScript",
+              "data": [345128],
+              "disabled": false,
+              "executionTiming": "presend"
+            }],
+            "postProcessors": [{
+              "type": "customScript",
+              "data": "console.log(\"postfix\");",
+              "disabled": false
+            }, {
+              "type": "commonScript",
+              "data": [345129],
+              "disabled": false
+            }],
+            "auth": {},
+            "advancedSettings": {
+              "isDefaultUrlEncoding": 1
+            }
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {},
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "推送2（带Auth）",
+        "api": {
+          "id": "3500094",
+          "method": "post",
+          "path": "/v1/api/testEntry/push2",
+          "parameters": {
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "x-token",
+              "id": "hQqJ1DCOF0"
+            }],
+            "query": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "pa1",
+              "id": "z3CbQhxGhC"
+            }, {
+              "required": true,
+              "description": "",
+              "type": "string",
+              "name": "pa2_must",
+              "id": "S4tOxLv2uJ"
+            }]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": {
+              "username": "aaa",
+              "password": "bbb"
+            }
+          },
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "131664",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "$ref": "#/definitions/362214"
+            }
+          }, {
+            "id": "131665",
+            "name": "记录不存在",
+            "code": 404,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "err": {
+                  "type": "string"
+                }
+              },
+              "x-apifox-orders": ["code", "err"],
+              "required": ["code", "err"]
+            }
+          }, {
+            "id": "131666",
+            "name": "禁止访问",
+            "code": 403,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "x-apifox-refs": {
+                "01GYHD4DDS5CA73AH6NDNC7CR7": {
+                  "$ref": "#/definitions/362214",
+                  "x-apifox-overrides": {}
+                }
+              },
+              "properties": {
+                "auth_msg": {
+                  "type": "string"
+                }
+              },
+              "required": ["auth_msg"],
+              "x-apifox-orders": ["01GYHD4DDS5CA73AH6NDNC7CR7", "auth_msg"]
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "multipart/form-data",
+            "parameters": [{
+              "required": false,
+              "description": "",
+              "type": "integer",
+              "name": "ws1",
+              "id": "ILAtxyI4vR"
+            }, {
+              "required": true,
+              "description": "",
+              "type": "file",
+              "name": "ws2",
+              "id": "PTyholf1Zd"
+            }]
+          },
+          "description": "",
+          "tags": [],
+          "status": "deprecated",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 14,
+          "cases": [{
+            "id": 4627096,
+            "type": "http",
+            "path": "/v1/api/testEntry/push2",
+            "name": "成功",
+            "responseId": 0,
+            "parameters": {
+              "query": [{
+                "id": "R5g69rqNDl",
+                "relatedId": "z3CbQhxGhC",
+                "value": "",
+                "enable": true,
+                "isDelete": false,
+                "relatedName": "pa1"
+              }, {
+                "id": "pOgZMJM6p9",
+                "relatedId": "S4tOxLv2uJ",
+                "value": "",
+                "enable": true,
+                "isDelete": false,
+                "relatedName": "pa2_must"
+              }],
+              "path": [],
+              "cookie": [],
+              "header": [{
+                "id": "OGnR7S5gUW",
+                "relatedId": "hQqJ1DCOF0",
+                "value": "",
+                "enable": true,
+                "isDelete": false,
+                "relatedName": "x-token"
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "generateMode": "normal"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {
+              "type": "basic",
+              "basic": {
+                "username": "aaa",
+                "password": "bbb"
+              }
+            },
+            "advancedSettings": {
+              "isDefaultUrlEncoding": 1
+            }
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {
+            "isDefaultUrlEncoding": 1
+          },
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }, {
+        "name": "推送3（带cookie）",
+        "api": {
+          "id": "3500095",
+          "method": "post",
+          "path": "/v1/api/testEntry/push3",
+          "parameters": {
+            "path": [],
+            "query": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "pa1",
+              "id": "z3CbQhxGhC"
+            }, {
+              "required": true,
+              "description": "",
+              "type": "string",
+              "name": "pa2_must",
+              "id": "S4tOxLv2uJ"
+            }],
+            "cookie": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "wsh",
+              "example": "123",
+              "id": "GfHR301seh"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "wsq",
+              "example": "456",
+              "id": "UJYaqFPlm4"
+            }],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "x-token",
+              "id": "hQqJ1DCOF0"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "131667",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "$ref": "#/definitions/362214"
+            }
+          }, {
+            "id": "131668",
+            "name": "记录不存在",
+            "code": 404,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "err": {
+                  "type": "string"
+                }
+              },
+              "x-apifox-orders": ["code", "err"],
+              "required": ["code", "err"]
+            }
+          }, {
+            "id": "131669",
+            "name": "禁止访问",
+            "code": 403,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "x-apifox-refs": {
+                "01GYHD4DDS5CA73AH6NDNC7CR7": {
+                  "$ref": "#/definitions/362214",
+                  "x-apifox-overrides": {}
+                }
+              },
+              "properties": {
+                "auth_msg": {
+                  "type": "string"
+                }
+              },
+              "required": ["auth_msg"],
+              "x-apifox-orders": ["01GYHD4DDS5CA73AH6NDNC7CR7", "auth_msg"]
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/x-www-form-urlencoded",
+            "parameters": [{
+              "required": true,
+              "description": "",
+              "type": "number",
+              "name": "ws1",
+              "id": "4IYodruuVO",
+              "example": "1"
+            }, {
+              "required": false,
+              "description": "",
+              "type": "integer",
+              "name": "ws2",
+              "id": "EIhiM5IIvS",
+              "example": "2"
+            }, {
+              "required": true,
+              "description": "",
+              "type": "string",
+              "name": "ws3",
+              "id": "YQevp0M27m",
+              "example": "3"
+            }]
+          },
+          "description": "",
+          "tags": ["novalue"],
+          "status": "released",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 15,
+          "cases": [{
+            "id": 4627105,
+            "type": "http",
+            "path": null,
+            "name": "带mock表达式",
+            "responseId": 131667,
+            "parameters": {
+              "query": [{
+                "id": "iO6eHCXIiX",
+                "relatedId": "z3CbQhxGhC",
+                "relatedName": "pa1",
+                "value": "",
+                "enable": true,
+                "isDelete": false
+              }, {
+                "id": "KX1MMhlDMG",
+                "relatedId": "S4tOxLv2uJ",
+                "relatedName": "pa2_must",
+                "value": "",
+                "enable": true,
+                "isDelete": false
+              }],
+              "path": [],
+              "cookie": [{
+                "id": "O9Sjicqa3J",
+                "relatedId": "GfHR301seh",
+                "relatedName": "wsh",
+                "value": "123",
+                "enable": true,
+                "isDelete": false
+              }, {
+                "id": "NHrXYmJB5P",
+                "relatedId": "UJYaqFPlm4",
+                "relatedName": "wsq",
+                "value": "456",
+                "enable": true,
+                "isDelete": false
+              }],
+              "header": [{
+                "id": "NohV4zWYWH",
+                "relatedId": "hQqJ1DCOF0",
+                "relatedName": "x-token",
+                "value": "456",
+                "enable": true,
+                "isDelete": false
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [{
+                "id": "ZyFQtl30DV",
+                "relatedId": "4IYodruuVO",
+                "relatedName": "ws1",
+                "value": "1",
+                "enable": true,
+                "isDelete": false
+              }, {
+                "id": "6pMd9QzWSD",
+                "relatedId": "EIhiM5IIvS",
+                "relatedName": "ws2",
+                "value": "2",
+                "enable": true,
+                "isDelete": false
+              }, {
+                "id": "mXUfdtGUZv",
+                "relatedId": "YQevp0M27m",
+                "relatedName": "ws3",
+                "value": "{% mock 'now', 'null', 'yyyyMMdd' %}20108{% mock 'string', '0123456789', 3 , 3 %}",
+                "enable": true,
+                "isDelete": false
+              }],
+              "generateMode": "normal"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {
+              "isDefaultUrlEncoding": 1
+            }
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {
+            "isDefaultUrlEncoding": 1
+          },
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }]
+    }, {
+      "name": "带有示例值",
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "preProcessors": [],
+      "postProcessors": [],
+      "auth": {},
+      "identityPattern": {
+        "httpApi": {
+          "type": "inherit",
+          "bodyType": "",
+          "fields": []
+        }
+      },
+      "items": [{
+        "name": "推送1-1",
+        "api": {
+          "id": "3500097",
+          "method": "post",
+          "path": "/v1/api/testEntry/push4",
+          "parameters": {
+            "path": [],
+            "query": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "pa1",
+              "id": "z3CbQhxGhC"
+            }, {
+              "required": true,
+              "description": "",
+              "type": "string",
+              "name": "pa2_must",
+              "id": "S4tOxLv2uJ"
+            }],
+            "cookie": [],
+            "header": [{
+              "required": false,
+              "description": "",
+              "type": "string",
+              "name": "x-token",
+              "id": "hQqJ1DCOF0"
+            }]
+          },
+          "auth": {},
+          "commonParameters": {
+            "query": [],
+            "body": [],
+            "cookie": [],
+            "header": []
+          },
+          "responses": [{
+            "id": "131675",
+            "name": "成功",
+            "code": 200,
+            "contentType": "json",
+            "jsonSchema": {
+              "$ref": "#/definitions/362214"
+            }
+          }, {
+            "id": "131676",
+            "name": "记录不存在",
+            "code": 404,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "err": {
+                  "type": "string"
+                }
+              },
+              "x-apifox-orders": ["code", "err"],
+              "required": ["code", "err"]
+            }
+          }, {
+            "id": "131677",
+            "name": "禁止访问",
+            "code": 403,
+            "contentType": "json",
+            "jsonSchema": {
+              "type": "object",
+              "x-apifox-refs": {
+                "01GYHD4DDS5CA73AH6NDNC7CR7": {
+                  "$ref": "#/definitions/362214",
+                  "x-apifox-overrides": {}
+                }
+              },
+              "properties": {
+                "auth_msg": {
+                  "type": "string"
+                }
+              },
+              "required": ["auth_msg"],
+              "x-apifox-orders": ["01GYHD4DDS5CA73AH6NDNC7CR7", "auth_msg"]
+            }
+          }],
+          "responseExamples": [],
+          "requestBody": {
+            "type": "application/json",
+            "parameters": [],
+            "jsonSchema": {
+              "type": "object",
+              "x-apifox-refs": {
+                "01GYHHGA4TC38CZES0NHNZA0FD": {
+                  "$ref": "#/definitions/362215",
+                  "x-apifox-overrides": {}
+                }
+              },
+              "properties": {
+                "extra1": {
+                  "type": "integer"
+                },
+                "extra2": {
+                  "type": "boolean"
+                }
+              },
+              "x-apifox-orders": ["01GYHHGA4TC38CZES0NHNZA0FD", "extra1", "extra2"],
+              "required": ["extra2"]
+            },
+            "example": "{\n    \"extra2\": false,\n    \"ua\": null,\n    \"user\": \"et Lorem dolore laboris\",\n    \"data\": [\n        {\n            \"ws1\": \"voluptate officia\",\n            \"ws2\": \"ea\"\n        },\n        {\n            \"ws1\": \"ipsum dolor proident\",\n            \"ws2\": \"tempor aute\"\n        },\n        {\n            \"ws1\": \"magna ipsum\",\n            \"ws2\": \"enim aliqua commodo id sed\"\n        }\n    ],\n    \"extra1\": 85\n}"
+          },
+          "description": "",
+          "tags": [],
+          "status": "released",
+          "serverId": "",
+          "operationId": "",
+          "sourceUrl": "",
+          "ordering": 12,
+          "cases": [{
+            "id": 4628257,
+            "type": "http",
+            "path": null,
+            "name": "带mock表达式",
+            "responseId": 131675,
+            "parameters": {
+              "query": [{
+                "id": "zcdHaq1EXp",
+                "relatedId": "z3CbQhxGhC",
+                "relatedName": "pa1",
+                "value": "",
+                "enable": true,
+                "isDelete": false
+              }, {
+                "id": "gzQuYpRiwC",
+                "relatedId": "S4tOxLv2uJ",
+                "relatedName": "pa2_must",
+                "value": "",
+                "enable": true,
+                "isDelete": false
+              }],
+              "path": [],
+              "cookie": [],
+              "header": [{
+                "id": "PyNL03Lp1H",
+                "relatedId": "hQqJ1DCOF0",
+                "relatedName": "x-token",
+                "value": "",
+                "enable": true,
+                "isDelete": false
+              }]
+            },
+            "commonParameters": {
+              "query": [],
+              "body": [],
+              "header": [],
+              "cookie": []
+            },
+            "requestBody": {
+              "parameters": [],
+              "data": "{\n    \"extra2\": false,\n    \"ua\": null,\n    \"user\": \"et Lorem dolore laboris\",\n    \"data\": [\n        {\n            \"ws1\": \"{% mock 'now', 'null', 'yyyyMMdd' %}20108{% mock 'string', '0123456789', 3 , 3 %}\",\n            \"ws2\": \"ea\"\n        },\n        {\n            \"ws1\": \"ipsum dolor proident\",\n            \"ws2\": \"tempor aute\"\n        },\n        {\n            \"ws1\": \"magna ipsum\",\n            \"ws2\": \"enim aliqua commodo id sed\"\n        }\n    ],\n    \"extra1\": 85\n}",
+              "generateMode": "normal"
+            },
+            "preProcessors": [],
+            "postProcessors": [],
+            "auth": {},
+            "advancedSettings": {
+              "isDefaultUrlEncoding": 1
+            }
+          }],
+          "mocks": [],
+          "customApiFields": "{}",
+          "advancedSettings": {
+            "isDefaultUrlEncoding": 1
+          },
+          "mockScript": {},
+          "codeSamples": []
+        }
+      }]
+    }]
+  }],
+  "socketCollection": [],
+  "docCollection": [],
+  "schemaCollection": [{
+    "name": "根目录",
+    "items": [{
+      "name": "结果返回模型",
+      "displayName": "response-result",
+      "id": "#/definitions/362214",
+      "description": "R",
+      "schema": {
+        "jsonSchema": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "success": {
+              "type": "string"
+            },
+            "error": {
+              "type": "string"
+            }
+          },
+          "title": "response-result",
+          "x-apifox-orders": ["code", "message", "success", "error"],
+          "required": ["code", "message", "success", "error"]
+        }
+      }
+    }, {
+      "name": "请求体共用syshead",
+      "displayName": "request-syshead",
+      "id": "#/definitions/362215",
+      "description": "request-sys-head",
+      "schema": {
+        "jsonSchema": {
+          "type": "object",
+          "properties": {
+            "ua": {
+              "type": ["string", "null"]
+            },
+            "user": {
+              "type": "string"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ws1": {
+                    "type": "string"
+                  },
+                  "ws2": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": ["ws1", "ws2"],
+                "required": ["ws1", "ws2"]
+              }
+            }
+          },
+          "title": "request-syshead",
+          "x-apifox-orders": ["ua", "user", "data"],
+          "required": ["ua", "user", "data"]
+        }
+      }
+    }]
+  }],
+  "apiTestCaseCollection": [{
+    "name": "默认目录",
+    "children": [],
+    "items": [{
+      "steps": [],
+      "id": 355332,
+      "name": "qqq",
+      "description": ""
+    }]
+  }],
+  "apiTestSuiteCollection": [],
+  "environments": [],
+  "commonScripts": [{
+    "name": "公共脚本1",
+    "description": "",
+    "content": "console.log(\"common-script\");",
+    "stickyOrdering": 0,
+    "ordering": 10,
+    "id": "345128"
+  }, {
+    "name": "公共脚本2",
+    "description": "",
+    "content": "pm.environment.set(\"variable_key\", \"variable_value\");\r\n",
+    "stickyOrdering": 0,
+    "ordering": 20,
+    "id": "345129"
+  }],
+  "databaseConnections": [],
+  "globalVariables": [],
+  "commonParameters": null,
+  "projectSetting": {
+    "apiStatuses": ["developing", "testing", "released", "deprecated"],
+    "servers": [{
+      "id": "default",
+      "name": "默认服务"
+    }],
+    "preProcessors": [],
+    "postProcessors": [],
+    "auth": {},
+    "initialDisabledMockIds": [],
+    "mockSettings": {},
+    "gateway": [],
+    "advancedSettings": {},
+    "language": "zh-CN",
+    "id": "326396",
+    "cloudMock": {
+      "security": "free",
+      "enable": false,
+      "tokenKey": "apifoxToken"
+    }
+  }
+}

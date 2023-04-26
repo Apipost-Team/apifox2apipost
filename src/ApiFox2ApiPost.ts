@@ -88,7 +88,7 @@ const joinCookieValues = (cookieArray: any) => {
   return cookieStringArray.join('; ');
 }
 const apifoxSchema2apipostSchema = (schemaObj: any) => {
-  let jsonSchema = {};
+  let jsonSchema: any = {};
   try {
     // x-apifox-orders 2 APIPOST_ORDERS x-apifox-refs 2 APIPOST_REFS  $ref 2 ref  x-apifox-overrides 2 APIPOST_OVERRIDES
     let jsonSchemaStr = JSON.stringify(schemaObj);
@@ -102,6 +102,10 @@ const apifoxSchema2apipostSchema = (schemaObj: any) => {
     jsonSchemaStr = jsonSchemaStr.replace(/\"x-apifox-overrides\"/g, '\"APIPOST_OVERRIDES\"');
     // 还原为对象
     jsonSchema = JSON.parse(jsonSchemaStr);
+
+    if (jsonSchema.hasOwnProperty('ref')) {
+      jsonSchema['APIPOST_REFS'] = jsonSchema.ref;
+    }
   } catch (error) { }
 
   return jsonSchema;
@@ -151,23 +155,36 @@ const getAssertKey = (subject: string, path: string, comparison: any, jsonArrayV
     return '';
   }
 }
-const getValueCode = (comparison: any, assertValue: any, path: any, multipleValue: any,jsonArrayValueIndex:any) => {
+const getValueCode = (comparison: any, assertValue: any, path: any, multipleValue: any, jsonArrayValueIndex: any) => {
+  let result = {
+    valueCode: '',
+    isNumber: false
+  };
   if (['isEmpty', 'isNotEmpty'].includes(comparison)) {
-    return '';
-  }
-  if (['exists', 'notExists'].includes(comparison)) {
+    result.valueCode = '';
+  }else if (['exists', 'notExists'].includes(comparison)) {
     if (jsonArrayValueIndex != null) {
-      return `(\"${path}[${jsonArrayValueIndex}])\"`
+      result.valueCode = `(\"${path}[${jsonArrayValueIndex}])\"`;
+    } else {
+      result.valueCode = `(\"${path})\"`;
     }
-    return `(\"${path})\"`;
+  }else if (['isOneOf', 'isNotOneOf'].includes(comparison)) {
+    result.valueCode = `(${multipleValue})`;
+  }else if (['isBelow', 'isAtMost', 'isAbove', 'isAtLeast']) {
+    result.valueCode = `(${assertValue})`;
+    if (isNaN(assertValue)) {
+      result.isNumber = true
+    }
+  }else{
+    result.valueCode = `(\`${assertValue}\`)`;
+    if (isNaN(assertValue)) {
+      result.valueCode = `(${assertValue})`;
+      result.isNumber = true
+    }else{
+      result.valueCode = `(\`${assertValue}\`)`;
+    }
   }
-  if (['isOneOf', 'isNotOneOf'].includes(comparison)) {
-    return `(${multipleValue})`;
-  }
-  if(['isBelow','isAtMost','isAbove','isAtLeast']){
-    return `(${assertValue})`;
-  }
-  return `(\`${assertValue}\`)`;
+  return result;
 }
 const createPostManAssert = (data: any) => {
   const { subject, comparison = '', value = '', name = '', path = '', multipleValue = [], extractSettings = {} } = data || {};
@@ -184,9 +201,13 @@ const createPostManAssert = (data: any) => {
     return '';
   }
 
-  const valueCode = getValueCode(comparison, value, path, multipleValue,  jsonArrayValueIndex);
+  const {
+    valueCode,
+    isNumber
+  } = getValueCode(comparison, value, path, multipleValue, jsonArrayValueIndex);
+  const keyCode = isNumber ? `parseInt(${key})` : key;
   return `apt.test("${assertName}", () => {
-    apt.expect(${key})${comparisonCode}${valueCode};
+    apt.expect(${keyCode})${comparisonCode}${valueCode};
   });`
 };
 class Apifox2Apipost {
@@ -732,7 +753,7 @@ class Apifox2Apipost {
         let newUUID = uuidV4();
         let jsonSchema = item?.jsonSchema;
 
-        if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]' && jsonSchema.hasOwnProperty('type') && jsonSchema.hasOwnProperty('properties')) {
+        if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]') {
           jsonSchema = apifoxSchema2apipostSchema(jsonSchema);
         }
 
@@ -944,7 +965,7 @@ class Apifox2Apipost {
     }
     try {
       let jsonSchema = schema?.jsonSchema;
-      if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]' && jsonSchema.hasOwnProperty('type') && jsonSchema.hasOwnProperty('properties')) {
+      if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]') {
         model.schema = apifoxSchema2apipostSchema(jsonSchema);
       }
     } catch (error) { }
