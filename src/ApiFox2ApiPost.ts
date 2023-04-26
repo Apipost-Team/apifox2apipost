@@ -119,7 +119,7 @@ const isArray = (data: any) => {
 const isString = (data: any) => {
   return Object.prototype.toString.call(data) === '[object String]';
 }
-const getAssertKey = (subject: string, path: string,comparison:any) => {
+const getAssertKey = (subject: string, path: string, comparison: any, jsonArrayValueIndex: any) => {
   if (subject == 'responseText') {
     return 'apt.response.raw.responseText';
   } else if (subject == 'responseJson') {
@@ -130,6 +130,9 @@ const getAssertKey = (subject: string, path: string,comparison:any) => {
     safePath = '.' + safePath.replace(/^\./, '');
     if (['exists', 'notExists'].includes(comparison)) {
       return `apt.response.json`;
+    }
+    if (jsonArrayValueIndex != null) {
+      safePath = safePath + `[${jsonArrayValueIndex}]`
     }
     return `apt.response.json${safePath}`
   } else if (subject == 'responseXml') {
@@ -148,29 +151,40 @@ const getAssertKey = (subject: string, path: string,comparison:any) => {
     return '';
   }
 }
-const getValueCode = (comparison: any, assertValue: any, path: any,multipleValue:any) => {
+const getValueCode = (comparison: any, assertValue: any, path: any, multipleValue: any,jsonArrayValueIndex:any) => {
   if (['isEmpty', 'isNotEmpty'].includes(comparison)) {
     return '';
   }
   if (['exists', 'notExists'].includes(comparison)) {
+    if (jsonArrayValueIndex != null) {
+      return `(\"${path}[${jsonArrayValueIndex}])\"`
+    }
     return `(\"${path})\"`;
   }
-  if(['isOneOf', 'isNotOneOf'].includes(comparison)){
+  if (['isOneOf', 'isNotOneOf'].includes(comparison)) {
     return `(${multipleValue})`;
   }
-  return `(${assertValue})`;
+  if(['isBelow','isAtMost','isAbove','isAtLeast']){
+    return `(${assertValue})`;
+  }
+  return `(\`${assertValue}\`)`;
 }
 const createPostManAssert = (data: any) => {
-  const { subject, comparison = '', value = '', name = '', path = '',multipleValue = [] } = data || {};
+  const { subject, comparison = '', value = '', name = '', path = '', multipleValue = [], extractSettings = {} } = data || {};
   const assertName = `${name || path || subject || ''} ${OPERATOR_FOX[comparison]?.name || '-'} ${value}`;
   const comparisonCode = OPERATOR_FOX[comparison]?.code || '';
-  const key = getAssertKey(subject, path, comparison);
-  const assertValue = subject === 'responseJson' ? (isString(value) ? `\`${value}\`` : value) : `\`${value}\``;
+
+  let jsonArrayValueIndex = null;
+  if (isObject(extractSettings) && extractSettings?.expression == path && extractSettings?.continueExtractorSettings?.isContinueExtractValue === true) {
+    jsonArrayValueIndex = extractSettings?.continueExtractorSettings?.JsonArrayValueIndexValue || 0;
+  }
+  const key = getAssertKey(subject, path, comparison, jsonArrayValueIndex);
+
   if (!key) {
     return '';
   }
 
-  const valueCode = getValueCode(comparison, assertValue, path, multipleValue);
+  const valueCode = getValueCode(comparison, value, path, multipleValue,  jsonArrayValueIndex);
   return `apt.test("${assertName}", () => {
     apt.expect(${key})${comparisonCode}${valueCode};
   });`
