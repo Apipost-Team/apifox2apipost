@@ -407,7 +407,7 @@ class Apifox2Apipost {
               type: 'Text',
               key: p.name,
               value: p?.value || p?.sampleValue || p?.example || '',
-              not_null: "1",
+              not_null: p?.required ? '1' : "-1",
               description: p.description || '',
               field_type: "Text"
             });
@@ -419,7 +419,7 @@ class Apifox2Apipost {
               type: 'Text',
               key: p.name,
               value: p?.value || p.sampleValue || p?.example || '',
-              not_null: "1",
+              not_null: p?.required ? '1' : "-1",
               description: p.description || '',
               field_type: "Text"
             });
@@ -523,7 +523,7 @@ class Apifox2Apipost {
                 type: 'Text',
                 key: param.name || "",
                 value: param?.value || param.sampleValue || param.example || "",
-                not_null: "1",
+                not_null: param?.required ? '1' : "-1",
                 description: param.description || "",
                 field_type: "Text"
               })
@@ -538,7 +538,7 @@ class Apifox2Apipost {
                 type: param['type'] && param['type'] == 'file' ? 'File' : 'Text',
                 key: param.name || "",
                 value: param?.value || param.sampleValue || param.example || "",
-                not_null: "1",
+                not_null: param?.required ? '1' : "-1",
                 description: param.description || "",
                 field_type: "Text"
               })
@@ -602,7 +602,7 @@ class Apifox2Apipost {
               type: 'Text',
               key: p.name,
               value: p?.value || p?.sampleValue || p?.example || '',
-              not_null: "1",
+              not_null: p?.required ? '1' : "-1",
               description: p.description || '',
               field_type: "Text"
             });
@@ -614,7 +614,7 @@ class Apifox2Apipost {
               type: 'Text',
               key: p.name,
               value: p?.value || p.sampleValue || p?.example || '',
-              not_null: "1",
+              not_null: p?.required ? '1' : "-1",
               description: p.description || '',
               field_type: "Text"
             });
@@ -719,7 +719,7 @@ class Apifox2Apipost {
                 type: 'Text',
                 key: param.name || "",
                 value: param?.value || param.sampleValue || param.example || "",
-                not_null: "1",
+                not_null: param?.required ? '1' : "-1",
                 description: param.description || "",
                 field_type: "Text"
               })
@@ -734,7 +734,7 @@ class Apifox2Apipost {
                 type: param['type'] && param['type'] == 'file' ? 'File' : 'Text',
                 key: param.name || "",
                 value: param?.value || param.sampleValue || param.example || "",
-                not_null: "1",
+                not_null: param?.required ? '1' : "-1",
                 description: param.description || "",
                 field_type: "Text"
               })
