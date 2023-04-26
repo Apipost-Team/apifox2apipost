@@ -181,12 +181,12 @@ const getValueCode = (comparison: any, assertValue: any, path: any, multipleValu
     result.valueCode = `(${multipleValue})`;
   } else if (['isBelow', 'isAtMost', 'isAbove', 'isAtLeast']) {
     result.valueCode = `(${assertValue})`;
-    if (isNaN(assertValue)) {
+    if (!isNaN(assertValue)) {
       result.isNumber = true
     }
   } else {
     result.valueCode = `(\`${assertValue}\`)`;
-    if (isNaN(assertValue)) {
+    if (!isNaN(assertValue)) {
       result.valueCode = `(${assertValue})`;
       result.isNumber = true
     } else {
