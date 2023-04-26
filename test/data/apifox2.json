@@ -60,6 +60,17 @@
     "code": 400,
     "contentType": "json",
     "id": "190154309"
+  }, {
+    "jsonSchema": {
+      "type": "object",
+      "properties": {},
+      "x-apifox-orders": []
+    },
+    "defaultEnable": false,
+    "name": "common-resp",
+    "code": 200,
+    "contentType": "json",
+    "id": "197522249"
   }],
   "apiCollection": [{
     "name": "根目录",
@@ -225,18 +236,440 @@
         "description": "1234324324",
         "tags": [],
         "status": "developing",
-        "serverId": "",
+        "serverId": "73e8810a-c097-4df7-b5dd-28dae4b6701f",
         "operationId": "",
         "sourceUrl": "",
         "ordering": 10,
         "cases": [],
         "mocks": [],
         "customApiFields": "{}",
-        "advancedSettings": {},
+        "advancedSettings": {
+          "isDefaultUrlEncoding": 1
+        },
         "mockScript": {},
         "codeSamples": [],
         "preProcessors": [],
-        "postProcessors": [],
+        "postProcessors": [{
+          "type": "assertion",
+          "data": {
+            "name": "数组团队",
+            "subject": "responseHeader",
+            "comparison": "equal",
+            "value": "1321321",
+            "path": "A",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "A",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "BAam5jVBvsbCAMx_aheT1"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "数组团队2322",
+            "subject": "responseJson",
+            "comparison": "notExist",
+            "value": "12321321",
+            "path": "errcode",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "errcode",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": true,
+                "JsonArrayValueIndexValue": "9"
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "lxEYx0Mlw0yC8QIr4uZ1I"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "87898797",
+            "subject": "responseJson",
+            "comparison": "notExist",
+            "value": "",
+            "path": "a",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "a",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "725fUoGV9de0S3wimcHin"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "789098",
+            "subject": "responseJson",
+            "comparison": "match",
+            "value": "/^[a-z]+d+/gi",
+            "path": "a",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "a",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "8odwM3T854bSpTfRPFKAx"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "123123213",
+            "subject": "responseJson",
+            "comparison": "isEmpty",
+            "value": "9999",
+            "path": "a",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "a",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "rIXbFbcvFkVdWKTtzku4z"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseJson",
+            "comparison": "isOneOf",
+            "value": "",
+            "path": "a",
+            "multipleValue": ["123", "434", "435", "46"],
+            "extractSettings": {
+              "expression": "a",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "tmB8FHq0vKhEBAeO7_FR2"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "324324",
+            "subject": "responseJson",
+            "comparison": "equal",
+            "value": "asdsad",
+            "path": "a",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "a",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": true,
+                "JsonArrayValueIndexValue": "0"
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "eS3QSZJ6PmbgQBSWT9a9t"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseJson",
+            "comparison": "equal",
+            "value": "wqewqewq",
+            "path": "qweqwewqe.a",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "qweqwewqe.a",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "RcnlfYN1kNnmjSFRIkQFc"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "32432432",
+            "subject": "responseXml",
+            "comparison": "equal",
+            "value": "123213",
+            "path": "/store",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "/store",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "jDDaKwhT1jwa3gZem7JU-"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "12321321",
+            "subject": "responseHeader",
+            "comparison": "equal",
+            "value": "12321312",
+            "path": "respon0header",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "respon0header",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "_RnUGiaekPL9ZD8KOqsmr"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "123213",
+            "subject": "responseCookie",
+            "comparison": "equal",
+            "value": "312312",
+            "path": "cookeiresoe",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "cookeiresoe",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "wTXgoXfWMlA7ECgS6u8Ii"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "213123",
+            "subject": "environment",
+            "comparison": "equal",
+            "value": "blz",
+            "path": "aaa",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "aaa",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "eRcmABvOep5OegAZUyO7x"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "123213",
+            "subject": "globals",
+            "comparison": "equal",
+            "value": "123123",
+            "path": "aaaagoble",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "aaaagoble",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "Awu3w0j67oAyuQhP16Dyk"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "312321",
+            "subject": "local",
+            "comparison": "equal",
+            "value": "21321312312",
+            "path": "12qasdas",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "12qasdas",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "DBrGyiQQIMOXI3_CTRkgX"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "adsadsa",
+            "subject": "duration",
+            "comparison": "equal",
+            "value": "100",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "H0p7uAdddyQQI6auzHasr"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseText",
+            "comparison": "isBelow",
+            "value": "da s da s d",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "xRR7EOKhOw42fVr2-E9KD"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseText",
+            "comparison": "isAtMost",
+            "value": "12312",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "4RyHgrsDvkvlBWPYqCH2_"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseText",
+            "comparison": "isAbove",
+            "value": "123",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "rII7GXHyWJTz1-KDwDSff"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseText",
+            "comparison": "isAtLeast",
+            "value": "",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "9UabwERrxghuaWWUJdm3v"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseText",
+            "comparison": "isEmpty",
+            "value": "",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "W1INKQXIu366h4TBfIsPv"
+        }, {
+          "type": "assertion",
+          "data": {
+            "name": "",
+            "subject": "responseText",
+            "comparison": "isNotEmpty",
+            "value": "",
+            "path": "",
+            "multipleValue": [],
+            "extractSettings": {
+              "expression": "",
+              "continueExtractorSettings": {
+                "isContinueExtractValue": false,
+                "JsonArrayValueIndexValue": ""
+              }
+            }
+          },
+          "defaultEnable": true,
+          "enable": true,
+          "id": "W9AIaNeD3q-cDR8LVY5R9"
+        }],
         "inheritPostProcessors": {},
         "inheritPreProcessors": {}
       }
@@ -1100,6 +1533,70 @@
   "schemaCollection": [{
     "name": "根目录",
     "items": [{
+      "name": "结果返回模型",
+      "displayName": "response-result",
+      "id": "#/definitions/43038132",
+      "description": "R",
+      "schema": {
+        "jsonSchema": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "success": {
+              "type": "string"
+            },
+            "error": {
+              "type": "string"
+            }
+          },
+          "title": "response-result",
+          "x-apifox-orders": ["code", "message", "success", "error"],
+          "required": ["code", "message", "success", "error"]
+        }
+      }
+    }, {
+      "name": "请求体共用syshead",
+      "displayName": "request-syshead",
+      "id": "#/definitions/43038131",
+      "description": "request-sys-head",
+      "schema": {
+        "jsonSchema": {
+          "type": "object",
+          "properties": {
+            "ua": {
+              "type": ["string", "null"]
+            },
+            "user": {
+              "type": "string"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ws1": {
+                    "type": "string"
+                  },
+                  "ws2": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": ["ws1", "ws2"],
+                "required": ["ws1", "ws2"]
+              }
+            }
+          },
+          "title": "request-syshead",
+          "x-apifox-orders": ["ua", "user", "data"],
+          "required": ["ua", "user", "data"]
+        }
+      }
+    }, {
       "name": "示例数据模型",
       "items": [{
         "name": "Pet",
@@ -1226,7 +1723,13 @@
     "children": [{
       "name": "默认目录",
       "children": [],
-      "items": []
+      "items": [{
+        "steps": [],
+        "id": 2269601,
+        "name": "qqq",
+        "description": "",
+        "ordering": 0
+      }]
     }, {
       "name": "宠物店",
       "children": [],
@@ -1442,48 +1945,39 @@
   }],
   "apiTestSuiteCollection": [],
   "testCaseReferences": [],
-  "environments": [{
-    "baseUrl": "http://prod-cn.your-api-server.com",
-    "baseUrls": {
-      "default": "http://prod-cn.your-api-server.com",
-      "73e8810a-c097-4df7-b5dd-28dae4b6701f": "12312312312",
-      "9ab85ab7-375b-428a-9e4c-9f0b54f038ea": "1234312412"
-    },
-    "parameters": {
-      "cookie": [],
-      "query": [],
-      "header": [],
-      "body": []
-    },
+  "environments": [],
+  "commonScripts": [{
+    "name": "公共脚本1",
+    "description": "",
+    "content": "console.log(\"common-script\");",
+    "stickyOrdering": 0,
+    "ordering": 10,
+    "id": "417365"
+  }, {
+    "name": "公共脚本2",
+    "description": "",
+    "content": "pm.environment.set(\"variable_key\", \"variable_value\");\r\n",
+    "stickyOrdering": 0,
+    "ordering": 20,
+    "id": "417366"
+  }],
+  "databaseConnections": [],
+  "globalVariables": [{
     "variables": [{
       "name": "a",
       "value": "123",
-      "description": "21321321312",
+      "description": "123",
+      "isBindInitial": false,
+      "initialValue": "123"
+    }, {
+      "name": "b",
+      "value": "123",
+      "description": "213",
+      "isBindInitial": false,
       "initialValue": "123"
     }],
-    "tags": [],
-    "name": "正式环境",
-    "type": "normal",
-    "visibility": "protected",
-    "ordering": 0,
-    "id": "10477619"
-  }, {
-    "baseUrl": "http://test-cn.your-api-server.com",
-    "baseUrls": {
-      "default": "http://test-cn.your-api-server.com"
-    },
-    "parameters": {},
-    "variables": [],
-    "tags": [],
-    "name": "测试环境",
-    "type": "normal",
-    "visibility": "protected",
-    "ordering": 0,
-    "id": "10477620"
+    "id": "2587066"
   }],
-  "commonScripts": [],
-  "databaseConnections": [],
-  "globalVariables": [],
   "commonParameters": null,
   "projectSetting": {
     "apiStatuses": ["developing", "testing", "released", "deprecated"],
@@ -1491,11 +1985,11 @@
       "name": "默认服务",
       "id": "default"
     }, {
-      "name": "拓展服务",
+      "name": "拓展服务124214",
       "id": "73e8810a-c097-4df7-b5dd-28dae4b6701f"
     }, {
-      "id": "9ab85ab7-375b-428a-9e4c-9f0b54f038ea",
-      "name": "拓展服务2222"
+      "name": "拓展服务2222",
+      "id": "9ab85ab7-375b-428a-9e4c-9f0b54f038ea"
     }],
     "preProcessors": [],
     "postProcessors": [],

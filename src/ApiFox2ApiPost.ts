@@ -179,13 +179,12 @@ const getValueCode = (comparison: any, assertValue: any, path: any, multipleValu
     }
   } else if (['isOneOf', 'isNotOneOf'].includes(comparison)) {
     result.valueCode = `(${multipleValue})`;
-  } else if (['isBelow', 'isAtMost', 'isAbove', 'isAtLeast']) {
+  } else if (['isBelow', 'isAtMost', 'isAbove', 'isAtLeast'].includes(comparison)) {
     result.valueCode = `(${assertValue})`;
     if (!isNaN(assertValue)) {
       result.isNumber = true
     }
   } else {
-    result.valueCode = `(\`${assertValue}\`)`;
     if (!isNaN(assertValue)) {
       result.valueCode = `(${assertValue})`;
       result.isNumber = true
@@ -765,11 +764,15 @@ class Apifox2Apipost {
         if (jsonSchema && Object.prototype.toString.call(jsonSchema) === '[object Object]') {
           jsonSchema = apifoxSchema2apipostSchema(jsonSchema);
         }
-
+        if (item?.code == 200 && !response.hasOwnProperty('success')) {
+          newUUID = 'success';
+        } else if (item?.code == 404 && !response.hasOwnProperty('error')) {
+          newUUID = 'error';
+        }
         response[newUUID] = {
           expect: {
             name: item?.name || '新建响应示例',
-            isDefault: -1,
+            isDefault: newUUID == 'success' || newUUID == 'error' ? 1 : -1,
             code: item?.code || "",
             contentType: item?.contentType || "json",
             schema: jsonSchema,
@@ -820,9 +823,9 @@ class Apifox2Apipost {
         } else if (preProcessor?.type === 'assertion' && isObject(preProcessor?.data)) {
           // 断言处理
           const { data } = preProcessor || {};
-
+     
+          
           let newScript = createPostManAssert(data);
-
           if (isString(newScript) && newScript.length > 0) {
             script = `${script}\n${newScript}`;
           }
@@ -1021,7 +1024,7 @@ class Apifox2Apipost {
       env: this.envs,
       dataModel: this.dataModel,
     }
-    console.log('project', JSON.stringify(validationResult.data.apis));
+    // console.log('project', JSON.stringify(validationResult.data.apis));
     return validationResult;
   }
 }
