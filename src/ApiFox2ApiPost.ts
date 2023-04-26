@@ -104,7 +104,15 @@ const apifoxSchema2apipostSchema = (schemaObj: any) => {
     jsonSchema = JSON.parse(jsonSchemaStr);
 
     if (jsonSchema.hasOwnProperty('ref')) {
-      jsonSchema['APIPOST_REFS'] = jsonSchema.ref;
+      let newIuid = uuidV4();
+      jsonSchema['APIPOST_REFS'] = {
+        [newIuid]: {
+          ref: jsonSchema.ref
+        },
+      };
+      jsonSchema['type'] = "object";
+      jsonSchema['properties'] = {};
+
     }
   } catch (error) { }
 
@@ -162,25 +170,25 @@ const getValueCode = (comparison: any, assertValue: any, path: any, multipleValu
   };
   if (['isEmpty', 'isNotEmpty'].includes(comparison)) {
     result.valueCode = '';
-  }else if (['exists', 'notExists'].includes(comparison)) {
+  } else if (['exists', 'notExists'].includes(comparison)) {
     if (jsonArrayValueIndex != null) {
       result.valueCode = `(\"${path}[${jsonArrayValueIndex}])\"`;
     } else {
       result.valueCode = `(\"${path})\"`;
     }
-  }else if (['isOneOf', 'isNotOneOf'].includes(comparison)) {
+  } else if (['isOneOf', 'isNotOneOf'].includes(comparison)) {
     result.valueCode = `(${multipleValue})`;
-  }else if (['isBelow', 'isAtMost', 'isAbove', 'isAtLeast']) {
+  } else if (['isBelow', 'isAtMost', 'isAbove', 'isAtLeast']) {
     result.valueCode = `(${assertValue})`;
     if (isNaN(assertValue)) {
       result.isNumber = true
     }
-  }else{
+  } else {
     result.valueCode = `(\`${assertValue}\`)`;
     if (isNaN(assertValue)) {
       result.valueCode = `(${assertValue})`;
       result.isNumber = true
-    }else{
+    } else {
       result.valueCode = `(\`${assertValue}\`)`;
     }
   }
